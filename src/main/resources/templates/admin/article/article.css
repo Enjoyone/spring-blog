@@ -1,0 +1,61 @@
+/* article-operate */
+.article-operate{
+	display: flex;
+	height: 40px;
+	margin-bottom:10px;
+}
+.article-operate>div{
+	height: 100%;
+}
+.select-all{
+	display: flex;
+	user-select:none;
+}
+.select-all label{
+	cursor:pointer;
+	display: flex;
+	padding-top:5px;
+	vertical-align:middle;
+}
+.lock{
+	
+}
+
+
+
+
+/*表格第一列选择 choose1 */
+.choose1{
+	position:relative;
+	width: 30px;
+}
+.choose1 label{
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left0;
+	display:flex;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 分页 */
+.pagination-con{
+
+}
+
+
+

@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/index/index.css">
+
+</head>
+
+
+<body>
+	<div th:include="/headerFooter/header :: html"></div>
+
+	<div class="con">
+		<div class="re-container">
+
+			<div class="con-left">
+				<div class="best-weekly-blog">
+					<span>七日精选</span>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th id="best_name">title</th>
+								<th id="best_value">value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>40</td>
+							</tr>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>20</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div class="last-monthly-user">
+					<span>月佳作者</span>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th id="best-name">userInfoID</th>
+								<th id="best-value">value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>40</td>
+							</tr>
+							<tr>
+								<td><a href="#">jim</a></td>
+								<td>20</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="con-middle">
+				<div class="con-middle-carousel">
+					<div id="demo" class="carousel slide" data-ride="carousel"
+						data-interval="2000">
+
+						<!-- 指示符 -->
+						<ul class="carousel-indicators">
+							<li data-target="#demo" data-slide-to="0" class="active"></li>
+							<li data-target="#demo" data-slide-to="1"></li>
+							<li data-target="#demo" data-slide-to="2"></li>
+						</ul>
+
+						<!-- 轮播图片 -->
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="/322.jpg">
+								<div class="carousel-caption">
+									<h3></h3>
+									<p></p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img src="/322.jpg">
+							</div>
+							<div class="carousel-item">
+								<img src="/322.jpg">
+							</div>
+						</div>
+
+						<!-- 左右切换按钮 -->
+						<a class="carousel-control-prev" href="#demo" data-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+						</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+							<span class="carousel-control-next-icon"></span>
+						</a>
+					</div>
+					<hr>
+
+				</div>
+				<div class="con-middle-article">
+					<c:forEach items="${articleList}" var="p" varStatus="vs">
+						<div class="blog">
+							<div class="blog-left">
+								<a class="blog-title"
+									href="articleShow?articleID=${p.articleID}">${p.articleTitle}</a>
+								<div class="blog-con">
+									<%-- ${fn:substring(p.articleContent,0,100)} --%> <%--
+									<c:choose>
+										<c:when test="${fn:contains(p.articleContent, '<') }">
+  ${fn:replace(fn:replace(fn:substringBefore(p.articleContent, '<'),'&nbsp;', ''), searchCondtion, keywords)}
+  <c:forEach
+												items="${fn:split(fn:substring(fn:replace(fn:substringAfter(p.articleContent, '<'),'&nbsp;', ''),0, 200), '<')}"
+												var="artext">
+ ${fn:replace(fn:substringAfter(artext, '>'), searchCondtion, keywords)}
+   </c:forEach>
+										</c:when>
+										<c:otherwise>
+   ${fn:replace(fn:substring(fn:replace(p.articleContent,'&nbsp;', ''), 0, 200), searchCondtion, keywords)}
+  </c:otherwise>
+									</c:choose>
+									--%>
+									<c:choose>
+										<c:when test="${fn:contains(p.articleContent, '<') }">
+  ${fn:replace(fn:replace(fn:substringBefore(p.articleContent, '<'),'&nbsp;', ''), searchCondtion, keywords)}
+  <c:forEach
+												items="${fn:split(fn:substring(fn:replace(fn:substringAfter(p.articleContent, '<'),'&nbsp;', ''),0, 200), '<')}"
+												var="artext">
+ ${fn:replace(fn:substringAfter(artext, '>'), searchCondtion, keywords)}
+   </c:forEach>
+										</c:when>
+										<c:otherwise>
+   ${fn:replace(fn:substring(fn:replace(p.articleContent,'&nbsp;', ''), 0, 200), searchCondtion, keywords)}
+  </c:otherwise>
+									</c:choose>
+
+
+
+								</div>
+								<div class="blog-bottom">
+									<a class="userInfoID"
+										href="userIndex?userID=${p.userInfo.userID}">${p.userInfo.userID}</a>
+									<span class="blog-support">赞 ${p.supportNum}<span></span></span>
+									<span class="blog-comment">评论${p.commentNum} <span></span></span>
+									<span class="launch-time">${p.launchTime}</span>
+								</div>
+							</div>
+							<div class="blog-right">
+								<img src="" alt="" class="blog-photo">
+							</div>
+						</div>
+						<hr>
+					</c:forEach>
+
+					<div class="loading-parent">
+						<div class="loading">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="con-right">right</div>
+
+			<!-- 7日最佳，数据库  字段  总赞   七日赞（赞算1，评论算5个赞，转发10个赞） -->
+		</div>
+
+
+		<div th:include="/headerFooter/footer :: html"></div>
+	</div>
+
+
+	<!--  -->
+	<!-- 返回顶部 -->
+	<div class="back-top" style="display: none;" title="回到顶部">
+		<span style="display: none;" class="back-top-word">顶部</span>
+		<div class="ok"></div>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/index/index.js"></script>
+
+</body>
+
+</html>

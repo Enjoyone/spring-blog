@@ -1,0 +1,96 @@
+.userCenterTop{
+	
+}
+.userCenterBottom{
+	
+}
+
+
+.userCenterCon{
+	display: flex;
+	margin-right:15px;
+	margin-left:15px;
+	
+}
+.userCenterCon>div{
+	border-right:1px solid gray; */
+}
+.userCenterConLeft{
+	flex:1;
+}
+.userCenterConRight{
+	flex:7;
+}
+
+/* 左侧 */
+.userCenter-menu a{
+	font-size:25px;
+}
+.userCenter-menu a:hover{
+	background:gray;
+	color:white;
+}
+.user-introduction{
+	
+}
+.user-introduction>div{
+	text-align: center;
+}
+.user-introduction img{
+	height: 200px;
+	border-radius:30px;
+	padding: 10px;
+	cursor: pointer;
+}
+/*  userID*/
+.user-introduction>div:nth-child(2){
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* 更换头像 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

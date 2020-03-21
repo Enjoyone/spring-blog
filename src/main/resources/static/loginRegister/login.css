@@ -1,0 +1,94 @@
+/* div{
+    border: 1px solid red;
+} */
+
+.login{
+    display: flex;
+}
+.left-login{
+    flex: 1;
+}
+.middle-login{
+    display: flex;
+    border-left: 1px solid black;
+    margin-top: 10px;
+}
+.id-login{
+    display: flex;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    /* align-items: center */
+    height: 500px;
+    align-items: center;
+}
+.login-form{
+    width: 500px;
+    
+}
+.submit{
+    width: 100%;
+}
+
+/* logo */
+.logo{
+    display: flex;
+    align-items: center;
+
+}
+.logo span{
+    font-size: 50px;
+}
+
+
+.logo hr{
+    display: inline-flex;
+    border-color: black;
+    width: 40%;
+}
+
+
+
+/* 错误信息提示 */
+.error-inf{
+    color: red;
+}
+
+
+
+/**/
+.left-login img{
+    width: 250px;
+    height: 250px;
+    border-radius: 20%;
+}
+.left-login>div>div{
+    font-size: 30px;
+}
+.left-login>div>div:nth-child(1){
+position: relative;
+    left: 60px;
+
+}
+.left-login>div>div:nth-child(2){
+position: relative;
+    left: -60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,372 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<html>
+<head>
+<base href="<%=basePath%>">
+<title>blog</title>
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="user/userCenter/blog/blog.css">
+<link rel="stylesheet" href="user/userCenter/userCenterCommon.css">
+
+
+</head>
+<body>
+	<!-- 弹出层 -->
+	<!--添加文章类型  -->
+	<div class="modal fade" id="addType">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">添加文章类型</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<span style="display: none;color:red;"></span>
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="文章类型名称">
+						<div class="input-group-append">
+							<button class="btn btn-success submit1" type="button">添加</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 内含文章 提示 -->
+	<div class="cannotDelete alert-danger" style="display: none;">
+		不能删除，内含文章！</div>
+	<div class="deleteCon alert-danger p-3" style="display: none;">
+		<div class="p-3">
+			确认删除文章类型：<span style="font-size: 20px;font-weight: bold;"></span> ?
+		</div>
+		<div class="text-right">
+			<button class="btn btn-success submit" type="button">确认</button>
+			<button class="btn btn-danger cancel" type="button">关闭</button>
+		</div>
+	</div>
+
+
+	<!-- 修改类型名称 -->
+	<div class="modal fade" id="changeTypeName">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">修改类型名称</h4>
+					<h3 class="ml-3 badge-info"></h3>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<span style="display: none;color:red;"></span>
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="新名称">
+						<div class="input-group-append">
+							<button class="btn btn-success submit" type="button">修改</button>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer text-center" style="display: none"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="userCenterTop"><%@include
+			file="../../../headerFooter/header.jsp"%></div>
+
+	<div class="userCenterCon">
+
+		<div class="userCenterConLeft">
+			<%@include file="../userCenterCommon.jsp"%>
+		</div>
+
+
+		<div class="userCenterConRight">
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active"
+						data-toggle="tab" href="#article">文章</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#articleType">文章类型</a></li>
+				</ul>
+			</div>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div id="article" class="tab-pane active">
+					<div class="article-show">
+						<!-- 删除提示框。。 -->
+						<div class="alert alert-warning" id="delete-article-warning" style="display: none;">
+							<button type="button" class="btn close-this">&times;</button>
+							<div>
+								<span>确认删除&nbsp;文章：</span><span class="title-con"></span> <span>吗？</span>
+							</div>
+							<div>
+								<span class="deleteID" style="display: none;"></span>
+								<button type="button" class="btn btn-warning delete-button">确认</button>
+							</div>
+						</div>
+						<div id="operateResult" class="alert alert-info">
+						
+						</div>
+						<!-- 申诉 -->
+						<div id="appeal" class="alert alert-info">
+							<div>
+								<span>申诉文章：</span><span></span>
+							</div>
+							<div>
+								<span>理由：</span>
+								<div class="appeal-con1">
+									<textarea class="appeal-con2 form-control"></textarea>
+									<span class="words">0</span><span>/50-字数</span>
+								</div>
+							</div>
+							<div class="text-right">
+								<button type="button" class="btn btn-success appeal-submit">确认</button>
+								<button type="button" class="btn btn-warning appeal-close">取消</button>
+							</div>
+
+						</div>
+
+						<div class="article-whole">
+							<span class="userID" style="display: none;">${userID}</span>
+							<c:set value="0" var="totalWords" />
+							<c:set value="0" var="support" />
+							<c:forEach items="${articleList}" var="q" varStatus="vs">
+								<c:set value="${totalWords+q.articleContent.length()}"
+									var="totalWords" />
+								<c:set value="${support+q.supportNum}" var="support" />
+
+							</c:forEach>
+
+							<div class="alert-primary">
+								<div>
+									<div>文章总数</div>
+									<div>${articleList.size()}</div>
+								</div>
+							</div>
+							<div class=" alert-danger">
+								<div>
+									<div>总字数</div>
+									<div>${totalWords }</div>
+								</div>
+							</div>
+							<div class=" alert-info">
+								<div>
+									<div>累计赞</div>
+									<div>${support}</div>
+								</div>
+							</div>
+						</div>
+						<table class="table table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th></th>
+									<th>文章标题</th>
+									<th>文章类型</th>
+									<th>创建时间</th>
+									<th>点赞量</th>
+									<th>评论数</th>
+									<th>文章属性</th>
+									<th>状态</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${articleList}" var="p" varStatus="vs">
+									<tr>
+										<td>${vs.count}</td>
+										<td class="title-pre"><a
+											href="articleShow?articleID=${p.articleID}"
+											class="articleTitle">${p.articleTitle }</a> <span
+											style="display: none">${p.articleID}</span></td>
+										<td>${p.articleType.articleTypeName}</td>
+										<td>${p.launchTime }</td>
+										<td>${p.supportNum }</td>
+										<td>${p.commentNum }</td>
+										<td><c:choose>
+
+												<c:when test="${p.articlePublic eq true}">
+													<span class="badge badge-primary">公开</span>
+													<c:if test="${p.articleComment eq true}">
+														<span class="badge badge-success">可评论</span>
+													</c:if>
+													<c:if test="${p.articleComment eq false}">
+														<span class="badge badge-light">不可评论</span>
+													</c:if>
+													<c:if test="${p.articleShare eq true}">
+														<span class="badge badge-info">可分享</span>
+													</c:if>
+													<c:if test="${p.articleShare eq false}">
+														<span class="badge badge-light">不可分享</span>
+													</c:if>
+
+												</c:when>
+												<c:otherwise>
+													<span class="badge badge-dark">不公开</span>
+													<span class="badge badge-secondary">${p.articleComment eq true ? "评论":"不可评论"}</span>
+													<span class="badge badge-secondary">${p.articleShare eq true ? "分享":"不可分享"}</span>
+												</c:otherwise>
+											</c:choose></td>
+										<td><c:choose>
+
+												<c:when test="${p.articleBlock eq true}">
+													<span class="badge badge-danger">屏蔽</span>
+													<a href="javascript:void(0)" class="to-appeal">申诉</a>
+												</c:when>
+												<c:otherwise>
+													<c:if test="${p.articleDraft eq true}">
+														<span class="badge badge-warning">存稿</span>
+													</c:if>
+													<c:if test="${p.articleDraft eq false}">
+										${p.articleBlock eq true ? "屏蔽":"正常"}
+										</c:if>
+												</c:otherwise>
+											</c:choose></td>
+										<td><a href="modifyArticle?articleID=${p.articleID}">修改</a><a
+											href="javascript:void(0)" class="delete-article pl-3">删除</a></td>
+
+									</tr>
+
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+
+				<!-- 文章类型 -->
+				<div id="articleType" class="tab-pane">
+
+					<div class="alert-articleType">
+
+						<div class=" alert alert-warning change-article-articleType-con ">
+							<button type="button" class="close-this close btn">&times;</button>
+							<div>修改文章的类型</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">标题</span>
+								</div>
+								<input type="text" class="form-control">
+								<div class="input-group-prepend">
+									<span class="input-group-text">类型</span>
+								</div>
+								<select class="form-control">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-success">确认</button>
+								</div>
+							</div>
+						</div>
+						<hr>
+
+
+					</div>
+					<div>
+						<div class="qwe">
+							<div>
+								<div class="showArticleType">
+									<table class="table table-hover table-striped table-bordered">
+										<thead>
+											<tr>
+												<th></th>
+												<th>文章类型</th>
+												<th>文章数</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${articleTypeList}" var="q" varStatus="vs">
+
+												<tr>
+
+													<td>${vs.count}</td>
+													<td class="articleTypeName"><a
+														href="javascript:void(0)" class="info-type">${q.articleTypeName}</a>
+														<span style="display: none;">${q.articleTypeID}</span></td>
+													<td class="articleNum"><c:choose>
+															<c:when test="${q.articleNum > 0}">
+																<a href="javascript:void(0)" class="info-type"><span>${q.articleNum}</span>
+
+																	<span class="badge badge-pill badge-info typeInfo">查看</span> </a>
+															</c:when>
+
+															<c:otherwise>
+																0
+															</c:otherwise>
+														</c:choose></td>
+													<td>
+														<button class="btn btn-info chengeTypeNameBtn"
+															data-toggle="modal" data-target="#changeTypeName">修改</button>
+														<button class="btn btn-warning delete-articleType">删除</button>
+													</td>
+
+												</tr>
+
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								
+								<div>
+									<button class="btn btn-success" data-toggle="modal"
+										data-target="#addType">添加</button>
+								</div>
+								
+								<div class="typeInfo">
+									<table class="table table-hover table-striped table-bordered">
+										<thead>
+											<tr>
+												<th></th>
+												<th>文章类型</th>
+												<th>文章数</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="userCenterBottom"><%@include
+			file="../../../headerFooter/footer.jsp"%></div>
+
+
+	<script src="static/js/jquery-3.3.1.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="user/userCenter/blog/articleType.js"></script>
+	<script type="text/javascript" src="user/userCenter/blog/blog.js"></script>
+
+
+</body>
+</html>

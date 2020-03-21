@@ -1,0 +1,44 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<html>
+<head>
+<title>userCenterCommon</title>
+
+</head>
+
+<body>
+	<div>
+		<div class="user-introduction ">
+			<div>
+				<img src="static/image/sanyecao.jpg">
+			</div>
+			<div>${userID}</div>
+		</div>
+		<hr>
+		
+		<div class="userCenter-menu">
+			<ul class="nav flex-column">
+				<!-- nav-pills  -->
+				<a class="nav-link active" href="uCenter">个人中心</a>
+				<a class="nav-link" href="uBlog">博客</a>
+				<a class="nav-link" href="uAccount">账号</a>
+			</ul>
+
+		</div>
+
+	</div>
+
+
+	<script>
+		$(function() {
+			$('#uCenter').addClass("active");
+			// 个人中心，博客，账号
+			$('.userCenter-menu a').click(function() {
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+			});
+		});
+	</script>
+
+</body>
+</html>

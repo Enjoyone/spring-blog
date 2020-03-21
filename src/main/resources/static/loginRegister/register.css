@@ -1,0 +1,124 @@
+.register {
+    display: flex;
+    justify-content: center;
+    /*border: 1px solid green;*/
+}
+
+.register-form {
+    /*width: 600px;*/
+    /*border: 1px solid blue;*/
+}
+
+
+/* 输入框处理 */
+.register-form-con>div {
+    margin-top: 25px;
+}
+
+input[type="text"],input[type="password"]{
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 350px;
+}
+.explain {
+    width: 350px;
+}
+
+/* 性别 */
+
+
+input[type="text"]:focus,input[type="password"]:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(28, 132, 146);
+    transition: border-bottom-color 0.5s;
+}
+
+/* 输入框解释 */
+.explain,
+.error-info {
+    white-space: normal;
+    margin-left: 80px;
+}
+
+/* 错误提示 */
+.error-info {
+    color: red;
+}
+
+.not_null {
+    color: red;
+    margin-left: 10px;
+}
+
+
+.input-name {
+    display: inline-flex;
+    width: 80px;
+}
+
+
+
+/* 欢迎注册 */
+.register-form>div:first-child {
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+    letter-spacing: 10px;
+}
+
+
+/* 注册页面  密码 */
+.see_password {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+}
+
+.d2 {
+    display: inline-flex;
+    height: 10px;
+    width: 20px;
+    background: black;
+    border-radius: 50% / 50%;
+    position: relative;
+}
+
+.d3 {
+    display: inline-flex;
+    position: absolute;
+    background: aliceblue;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    top: 3px;
+    left: 8px;
+}
+
+
+
+
+
+
+
+
+
+/*注册部分*/
+.register-form-con>div:last-child{
+   text-align: center;
+}
+
+.register-form-con button[type="submit"]{
+    width: 300px;
+}
+
+
+
+
+
+
+
+
+

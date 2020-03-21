@@ -1,0 +1,12 @@
+
+#basicInfo{
+	
+}
+
+#basicInfo>div:nth-child(1){
+	float:right;
+	font-size: 20px;
+	padding: 3px;
+}
+
+

@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="loginRegister/login.css">
+
+</head>
+
+<body>
+<div th:include="/headerFooter/header :: html">
+		
+	</div>
+
+<div class="logo">
+    <hr>
+    <span>登录</span>
+    <hr>
+</div>
+<div class="login">
+    <div class="left-login text-center">
+       <div>
+           <img src="image/sanyecao.jpg">
+           <div>记录现在</div>
+           <div>回望过去！</div>
+       </div>
+
+    </div>
+    <div class="middle-login">
+    </div>
+
+
+    <div class="id-login">
+        <div class="login-form">
+            <form action="login" method="POST" class="login-form-con" autocomplete="off">
+                <!-- 表单类型 -->
+                <label for="lrType"></label>
+                <input type="hidden" id="lrType" name="operateType" value="login">
+                <span class="error-inf"></span>
+                <div class="input-group mb-3">
+                    <!-- mb-3 间隙 -->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">账号：</span>
+                    </div>
+                    <label for="user-name-label"></label>
+                    <input type="text" class="form-control" id="user-name-label" name="userID" value=""
+                           placeholder="用户名"><br>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">密码：</span>
+                    </div>
+                    <label for="user-password-label"></label>
+                    <input type="password" class="form-control" id="user-password-label" name="userPWD" value=""
+                           placeholder="密码"><br>
+                </div>
+
+                <div class="other">
+                    <div class="other1">
+                        <label for="if-remember-label"></label>
+                        <input type="checkbox" id="if-remember-label" name="remember_me">Remember me?<br>
+                    </div>
+                    <div class="other2">
+                        <a href="javascript:void(0)">忘记密码？</a>
+                        <a href="../login_register/register.jsp">新用户注册</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary submit">
+                    登录
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div th:include="/headerFooter/footer :: html"></div>
+</div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script>
+    $(function () {
+        $(".login-form-con").submit(function () {
+            var userID = $("#user-name-label").val();
+            var userPWD = $("#user-password-label").val();
+
+            if (userID == null || userPWD == null) {
+                $(".error-inf").html("请输入登录名或密码！");
+                return false;
+            }
+        })
+    })
+</script>
+<script>
+    $(function () {
+        <%
+        try{
+            String error=request.getParameter("error").toString();
+
+            %>
+        var loginerror = '<%=error%>';
+        if (loginerror === 'yes') {
+            $(".error-inf").html("账号或密码错误！");
+        }
+        <%
+    }catch(Exception e){
+
+    }
+    %>
+
+    });
+
+
+</script>
+
+
+</body>
+
+</html>

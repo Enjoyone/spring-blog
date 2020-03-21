@@ -1,0 +1,44 @@
+.container {
+    box-sizing: border-box;
+    height: 800px;
+}
+
+.login {
+    display: flex;
+    height: 100%;
+}
+
+.login>div {
+    position: relative;
+    min-height: 300px;
+    max-height: 350px;
+    top: 30%;
+}
+
+.login-left {
+    flex: 5;
+}
+
+.login-right {
+    position: relative;
+    flex: 3;
+}
+
+[type="text"],
+[type="password"] {
+    padding: 30px 10px;
+    border-radius: 50px;
+}
+
+.shadow {
+    -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+}
+
+
+
+/* 密码或账号错误 */
+.warning {
+color: red;
+display: none;
+}

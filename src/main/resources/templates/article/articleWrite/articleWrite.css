@@ -1,0 +1,85 @@
+.write-form>div>label:nth-child(-n+3){
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+/*标题*/
+input[name="article_title"]{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 600px;
+}
+
+
+/* 文本域 */
+.textarea1{
+	display:inline-flex;
+	font-size: 25px;
+    padding-top: 20px;
+}
+#article_con{
+   border: 1px solid #ccc;
+   min-height: 300px;
+}
+.w-e-text-container{
+	min-height:600px;
+}
+
+
+/* 新建类型 */
+.new-article-type{
+    font-weight: bold;
+}
+.add-articleType{
+    z-index: 999;
+}
+/*添加状态显示*/
+.addResult{
+
+
+}
+
+
+
+/* 文章 选项 解释*/
+.article_oprate_info{
+    position: relative;
+    top: 2px;
+}
+
+
+/*提交提示*/
+
+.article_final{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.submit-info{
+    display: none;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+
+
+/* 提交后结果 */
+.result{
+	display: none;
+	height:80px;
+	width: 200px;
+	position: absolute;
+	z-index: 999;
+	font-size: 30px;
+	top:200px;
+	left:50%;
+}
+
+
+
+
+
+

@@ -1,0 +1,185 @@
+/* div {
+    border: 1px solid red;
+} */
+
+/* article-title article-inf  */
+.article-title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.article-inf a {
+	padding: 10px;
+	font-size: 25px;
+}
+
+.article-inf a {
+	padding: 10px;
+	font-size: 25px;
+}
+
+.article-inf>span {
+	padding: 5px;
+	font-size: 15px;
+}
+
+.article-inf>span:nth-child(3),.article-inf>span:nth-child(5) {
+	padding: 5px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* 内容 */
+.container>div:nth-child(2) {
+	text-indent: 2em;
+	letter-spacing: 2px;
+	line-height: 150%;
+}
+
+/* 点赞 评论 */
+.article-oprate {
+	display: flex;
+}
+
+.article-oprate>div {
+	margin-left: 15px;
+}
+
+.article-oprate>div:nth-child(2) {
+	margin-left: 25px;
+}
+.comment-icon>div:nth-child(4) {
+	position: absolute;
+	float: right;
+	left: 40px;
+}
+.comment-icon span{
+	position: absolute;
+	left:35px;
+}
+
+
+/* 评论框 */
+.to-comment {
+	padding: 10px;
+	position: relative;
+}
+.to-comment input{
+	padding-right: 10px;
+}
+.to-comment>div:nth-child(1) {
+	display: inline-flex;
+	width: 100%;
+	position: relative;
+	 flex-direction: row-reverse;
+	 align-items:flex-end;
+}
+.to-comment>div:nth-child(1)>div {
+	position: absolute;
+}
+.to-comment>div:nth-child(2) {
+	text-align: right;
+	display: none;
+}
+
+
+.to-comment span:nth-child(2) {
+	font-weight: bold;
+	font-size: 15px;
+	padding-right:5px;
+}
+
+/* 评论结果 */
+
+#result{
+	position:absolute;
+	display:inline-flex;
+	margin-right:20px;
+	font-size: 20px;
+	top:30%;
+	left:45%;
+}
+
+.comment-con{
+	
+}
+.comment-con .per-c{
+	display: flex;
+}
+.comment-con .per-c>div:nth-child(1){
+	font-size: 20px;
+	padding:5px;
+	font-weight: bold;
+}
+.comment-con .per-c>div:nth-child(2){
+	float:right;
+	width: 100%;
+}
+.comment-con .per-c>div:nth-child(2)>div:nth-child(1){
+	font-size: 10px;
+	padding: 10px;
+}
+.comment-con .per-c>div:nth-child(2)>div:nth-child(2){
+	float:right;
+}
+.comment-con .per-c{
+	
+}
+.comment-con .per-c{
+	
+}
+
+
+
+
+/* 评论内容 */
+
+/*  */
+
+/* table 样式 */
+table {
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+table td,table th {
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 3px 5px;
+}
+
+table th {
+	border-bottom: 2px solid #ccc;
+	text-align: center;
+}
+
+/* blockquote 样式 */
+blockquote {
+	display: block;
+	border-left: 8px solid #d0e5f2;
+	padding: 5px 10px;
+	margin: 10px 0;
+	line-height: 1.4;
+	font-size: 100%;
+	background-color: #f1f1f1;
+}
+
+/* code 样式 */
+code {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	padding: 3px 5px;
+	margin: 0 3px;
+}
+
+pre code {
+	display: block;
+}
+
+/* ul ol 样式 */
+ul,ol {
+	margin: 10px 0 10px 20px;
+}

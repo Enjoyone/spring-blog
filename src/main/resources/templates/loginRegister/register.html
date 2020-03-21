@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>register</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="loginRegister/register.css">
+
+</head>
+
+<body>
+	<div th:include="/headerFooter/header :: html"></div>
+
+
+	<div class="register">
+		<div class="register-form">
+			<div>欢迎注册！</div>
+			<form class="register-form-con form-group" action="register"
+				method="POST">
+
+				<div style="display: none">
+					<label> <input type="text" style="display: none" /> <input
+						type="password" style="display: none" />
+					</label>
+				</div>
+
+				<div>
+					<div class="input-group">
+						<label><span class="input-name">账号</span> <input
+							type="text" name="userID" value=""> </label> <span
+							class="not_null input-group-append">*</span>
+					</div>
+					<div class="explain">5-21个字符，包括字母数字下划线中文特殊字符</div>
+					<span class="error-info"></span>
+				</div>
+
+				<div>
+					<div class="input-group">
+						<label><span class="input-name">姓名</span> <input
+							type="text" name="name" value=""> </label> <span
+							class="not_null input-group-append">*</span>
+					</div>
+					<div class="explain">中文 英文 2-30</div>
+					<span class="error-info"></span>
+				</div>
+
+				<div>
+					<div class="input-group">
+						<label><span class="input-name">密码</span> <input
+							type="password" name="userPWD" value=""> </label> <span
+							class="not_null input-group-append">*</span> <span
+							class="see_password"> <span class="d2"> <span
+								class="d3"></span>
+						</span>
+						</span>
+					</div>
+					<div class="explain">字母数字 6-30</div>
+					<span class="error-info"></span>
+				</div>
+
+				<div>
+					<div class="input-group">
+						<label><span class="input-name">验证密码</span> <input
+							type="password" name="checkUserPWD" value=""> </label> <span
+							class="not_null input-group-append">*</span> <span
+							class="see_password"> <span class="d2"> <span
+								class="d3"></span>
+						</span>
+						</span>
+					</div>
+					<div class="explain"></div>
+					<span class="error-info"></span>
+				</div>
+
+				<div>
+					<div class="input-group">
+						<label> <span class="input-name">性别</span> 男 <input
+							type="radio" name="gender" value="男" checked="" class="mr-3">
+							女 <input type="radio" name="userGender" value="女" class="mr-3">
+						</label> <span class="not_null input-group-append">*</span>
+					</div>
+				</div>
+
+				<div class="input-group mb-3">
+					<span class="input-name">出生日期</span>
+					<div class="choose_birth form-inline ">
+						<label> <select class="yearNum form-control"
+							name="yearNum">
+						</select>
+						</label> <span>年</span> <label> <select
+							class="monthNum form-control " name="monthNum">
+						</select>
+						</label> <span>月</span> <label> <select
+							class="dayNum form-control" name="dayNum">
+						</select>
+						</label> <span>日</span>
+					</div>
+					<span class="not_null">*</span>
+				</div>
+				<!-- 在个人中心完善 -->
+				<div>
+					<div class="register-protocol-div">
+						<label> <input type="checkbox" name="register_protocol"
+							value="yes"> 我已同意
+						</label> <a href="javascript:void(0)">用户使用协议</a> 和 <a
+							href="javascript:void(0)">隐私协议</a>
+					</div>
+
+					<button type="submit" class="btn btn-primary" disabled="disabled">
+						<!--  disabled="display" -->
+						注册
+					</button>
+					<a href="login" class="btn btn-success">返回登录</a>
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+	<div>
+		<div th:include="/headerFooter/footer :: html"></div>
+	</div>
+
+
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+	<!-- <%--提交--%> -->
+	<script>
+		$(function() {
+			/*   <%--检查是否重复--%> */
+			var exit = false;
+			var userID = $("[name='userID']");
+			userID.bind("blur", function() {
+				var userIDCon = userID.val();
+				// 数据库查询是否存在
+				$.ajax({
+					type : "post",
+					url : "registerUserIDCheck",
+					data : {
+						userID : userIDCon
+					},
+					datatype : "text",
+					success : function(data) {
+						if (data === "yes") {
+							userID.parent().parent().parent().find(
+									".error-info").html("账号已存在！");
+							exit = true;
+						} else {
+							userID.parent().parent().parent().find(
+									".error-info").html("");
+							exit = false;
+						}
+					}
+				});
+			});
+			// submit
+			$(".register-form-con")
+					.submit(
+							function() {
+								var flag_userID = false;
+								var flag_userName = false;
+								var flag_userPWD = false;
+								var flag_checkuserPWD = false;
+								// 验证登录名
+								var userIDCon = userID.val();
+								// 初步验证      字母数字下划线 中文 -   5-21
+								var testID = /^([a-zA-Z]|[\u4e00-\u9fa5])([a-zA-Z0-9_-]|[\u4e00-\u9fa5]){4,20}$/;
+								if (exit) {
+
+								} else {
+									if (userIDCon.length === 0) {
+										userID.parent().parent().parent().find(
+												".error-info").html("请输入账号！");
+									}
+									if (!testID.test(userIDCon)) {
+										userID.parent().parent().parent().find(
+												".error-info").html("格式不正确！");
+									} else {
+										userID.parent().parent().parent().find(
+												".error-info").html("");
+										flag_userID = true;
+									}
+								}
+
+								// 姓名    中文 英文
+								var userName = $("[name='name']");
+								var userNameCon = userName.val();
+								var test_userName = /^([a-zA-Z\/ ]|[\u4e00-\u9fa5]){1,30}$/;
+								if (userNameCon.length === 0) {
+									userName.parent().parent().parent().find(
+											".error-info").html("请输入姓名！");
+								}
+								if (!test_userName.test(userNameCon)) {
+									userName.parent().parent().parent().find(
+											".error-info").html("姓名格式不正确！");
+								} else {
+									userName.parent().parent().parent().find(
+											".error-info").html("");
+									flag_userName = true;
+								}
+
+								//密码    字母数字
+								var userPWD = $("[name='userPWD']");
+								var userPWDCon = userPWD.val();
+								var test_userPWD = /^[a-zA-Z]([a-zA-Z0-9]){5,30}$/;
+								if (userPWD.length === 0) {
+									userPWD.parent().parent().parent().find(
+											".error-info").html("请输入密码！");
+								}
+								if (!test_userPWD.test(userPWDCon)) {
+									userPWD.parent().parent().parent().find(
+											".error-info").html("密码格式不正确");
+								} else {
+									flag_userPWD = true;
+								}
+								// //
+								var checkUserPWD = $("[name=checkUserPWD]");
+								if (userPWDCon !== checkUserPWD.val()) {
+									checkUserPWD.parent().parent().parent()
+											.find(".error-info").html("密码不一致！");
+								} else {
+									checkUserPWD.parent().parent().parent()
+											.find(".error-info").html("");
+									flag_checkuserPWD = true;
+								}
+								return flag_userID === true
+										&& flag_userName === true
+										&& flag_userPWD === true
+										&& flag_checkuserPWD === true;
+							});
+		})
+	</script>
+	<!-- <%--// 同意协议开启注册按钮  查看密码--%> -->
+	<script>
+		$(function() {
+			// 同意协议开启注册按钮
+			var reg = $('.register-form-con button[type="submit"]');
+			var reg_protocol = $('[name="register_protocol"]');
+			reg_protocol.prop("checked", false);
+			reg.removeAttr("disabled");
+			reg.attr("disabled", "disabled");
+
+			var re_status = 0;
+			reg_protocol.click(function() {
+				if (re_status === 0) {
+					re_status = 1;
+					reg.removeAttr("disabled");
+				} else {
+					re_status = 0;
+					reg.attr("disabled", "disabled");
+				}
+			});
+
+			// 看密码
+			$(".see_password").mousedown(function() {
+				$(this).parent().find("input").attr("type", "text");
+			});
+
+			$(".see_password").mouseup(function() {
+				$(this).parent().find("input").attr("type", "password");
+			});
+
+		});
+	</script>
+	<!-- <%--日期选择处理--%> -->
+	<script>
+		$(function() {
+
+			var date = new Date();
+			var nowYear = date.getFullYear(); //获取当前的年
+			var limitedAge = 10;
+			for (var i = nowYear - limitedAge; i >= nowYear - 100; i--) {
+				$(".yearNum").append(
+						"<option value=" + i + ">" + i + "</option>");
+			}
+			for (var i = 1; i <= 12; i++) {
+				$(".monthNum").append(
+						"<option value=" + i + ">" + i + "</option>");
+			}
+			for (var i = 1; i <= 28; i++) {
+				$(".dayNum").append(
+						"<option value=" + i + ">" + i + "</option>");
+			}
+
+			$(".yearNum,.monthNum").change(
+					function() {
+						var year = $(".yearNum").val();
+						var month = $(".monthNum").val();
+						var days = null;
+						if (month == 1 || month == 3 || month == 5
+								|| month == 7 || month == 8 || month == 10
+								|| month == 12) {
+							days = 31;
+						} else if (month == 4 || month == 6 || month == 9
+								|| month == 11) {
+							days = 30;
+						} else {
+							if ((year % 4 == 0 && year % 100 != 0)
+									|| (year % 400 == 0)) { // 判断是否为润二月
+								days = 29;
+							} else {
+								days = 28;
+							}
+						}
+						$(".dayNum").empty();
+						for (var i = 1; i <= days; i++) {
+							$(".dayNum").append(
+									"<option value=" + i + ">" + i
+											+ "</option>");
+						}
+					})
+		})
+	</script>
+</body>
+
+</html>

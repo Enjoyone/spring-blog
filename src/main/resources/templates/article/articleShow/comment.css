@@ -1,0 +1,49 @@
+
+.comment-icon {
+    width: 32px;
+    height: 23px;
+    border: 2px solid gray;
+    /* border-color:#f00 #ff0 #05f #0f0; */
+    position: relative;
+    /* background: #272636; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.out,
+.in {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.out {
+    border: 10px solid transparent;
+    top: 100%;
+    left: 20%;
+    border-top-color: gray;
+}
+
+.in {
+    border: 10px solid transparent;
+    top: 90%;
+    left: 20%;
+    border-top-color: #f6f6f6;
+}
+
+/* 点 */
+.comment-icon>div:nth-child(1){
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+}
+.comment-icon>div:nth-child(1) div{
+   width: 5px;
+   height: 5px;
+   border-radius: 100%;
+   background:gray;
+}

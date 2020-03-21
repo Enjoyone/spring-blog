@@ -1,0 +1,160 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<html>
+<head>
+<base href="<%=basePath%>">
+<title>userCenterIndex</title>
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="user/userCenter/userCenterIndex/userCenterIndex.css">
+<link rel="stylesheet" href="user/userCenter/userCenterCommon.css">
+
+
+</head>
+<body>
+<div id="back" disabled="disabled"></div>   <!-- 虚化层 -->
+	<div class="userCenterTop"><%@include
+			file="../../../headerFooter/header.jsp"%></div>
+
+	<div class="userCenterCon">
+
+		<div class="userCenterConLeft">
+			<%@include file="../userCenterCommon.jsp"%>
+		</div>
+
+		<div class="userCenterConRight">
+
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active"
+						data-toggle="tab" href="#personalData">个人资料</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#message">消息</a></li>
+				</ul>
+			</div>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div id="personalData" class="tab-pane active">
+
+					<div class="change-status alert-danger text-center p-3">
+						<span class="change-status-con p-2 text-success font-weight-bold"></span><br>
+						<span>马上刷新！</span>
+					</div>
+
+					<div class="user-information">
+					
+						<div>
+							<a href="userIndex?userID=${user.userID}" class="userindex-html">个人主页
+								<span class="right-arrow"></span>
+							</a>
+							<div class="welcomme-word">
+								<span>亲爱的</span> <span>${user.userName}</span> <span>你已加入Blog</span>
+								<span>${joinDays}</span> <span>天了！</span>
+							</div>
+							<div class="register-time text-right">
+								<span>注册日期：</span><span class="">${user.registerTime}</span>
+							</div>
+							<hr>
+						</div>
+						<div>
+							<div></div>
+							<div class="user-information-detail">
+								<table class="table table-hover table-bordered table-striped">
+									<tr>
+										<td>登录名：</td>
+										<td>${user.userID}</td>
+									</tr>
+									<tr>
+										<td>姓名：</td>
+										<td>${user.userName}</td>
+									</tr>
+									<tr>
+										<td>性别：</td>
+										<td>${user.gender eq true ?"男":"女"}</td>
+									</tr>
+									<tr>
+										<td>出生日期：</td>
+										<td>${user.birth}</td>
+									</tr>
+									<tr>
+										<td colspan="2">描述信息：</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="origin-intro">${user.introduction}</td>
+									</tr>
+								</table>
+							</div>
+							<div class="">
+								<a href="javascript:void(0)" class="change-user-information">修改资料</a>
+							</div>
+						</div>
+
+						<%--    修改资料弹出框--%>
+						<div class="change_user_information-con alert-danger"
+							style="display: none">
+							<div class="">
+								<label>登录名： <input type="text" name="userID"
+									class=" form-control" readonly="readonly"
+									value="${user.userID}">
+								</label> <label>姓名： <input type="text" name="userName"
+									class=" form-control" value="${user.userName}">
+								</label> <label>性别：<c:choose>
+
+										<c:when test="${user.gender eq true}">
+
+											<input type="radio" name="userGender" value="1" checked>男 <input
+												type="radio" name="userGender" value="0">女<br>
+										</c:when>
+
+										<c:otherwise>
+											<input type="radio" name="userGender" value="1">男 <input
+												type="radio" name="userGender" value="0" checked>女<br>
+
+										</c:otherwise>
+
+									</c:choose>
+								</label>
+								<div>
+									<span>出生日期：</span>
+									<span class="hide-birth" style="display: none;">${user.birth}</span>
+									<%@include file="../../../static/timeChoose/time.jsp"%>
+								</div>
+								<label for="introduction">描述信息：</label>
+								<div><span>原：</span><span>${user.introduction}</span></div>
+								<textarea name="introduction" id="introduction" cols="30"
+									rows="10" class=" form-control"></textarea>
+								<div class="text-center">
+									<button type="button"
+										class="btn btn-success m-1 pr-3 pl-3 submit-btn">确认</button>
+									<button type="button"
+										class="btn btn-secondary m-1 pr-3 pl-3 cancel-btn">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="message" class="container tab-pane fade">消息</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="userCenterBottom"><%@include
+			file="../../../headerFooter/footer.jsp"%></div>
+
+
+	<script src="static/js/jquery-3.3.1.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+	<script src="user/userCenter/userCenterIndex/userCenterIndex.js"></script>
+
+</body>
+</html>

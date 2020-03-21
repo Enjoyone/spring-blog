@@ -1,0 +1,162 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+*{
+    box-sizing: border-box;
+}
+
+.admin {
+    display: flex;
+    height: 100%;
+}
+
+.admin-left {
+    height: 100%;
+    flex: 5;
+    background-color:#1F262D ;
+    position: relative;
+}
+.admin-left>div:nth-child(2) li{
+    margin-top: 15px;
+}
+.admin-left>div:nth-child(2) li a span{
+    padding-left: 15px;
+}
+/* logo */
+.logo{
+    height: 40px;
+    width: 40px;
+}
+.logo-name{
+    padding-left: 15px;
+}
+
+
+.admin-left>div:nth-child(2){
+    position: relative;
+    min-width: 0px;
+}
+/* .admin-left>div */
+.change-left1{
+    min-width: 200px;
+}
+.admin-left>div:nth-child(2) nav{
+    position: relative;
+    min-width: 100%;
+}
+.admin-left>div:nth-child(2) nav ul{
+    position: relative;
+    min-width: 100%;
+    min-height: 500px;
+}
+.admin-left>div:nth-child(2) li a{
+    width: 99%;
+    min-width:60px;
+}
+.admin-left>div:nth-child(2) li a:hover{
+    color: white;
+    font-weight: bold;
+}
+
+/* 改变左侧 */
+.change-left2{
+    flex: auto;
+    width: 35px;
+    background-color:#1F262D ;
+}
+
+/* 左侧图标 */
+.image-left{
+    height: 30px;
+    width: 30px;
+}
+
+/* 左侧下拉菜单 */
+
+/* 方向 */
+.change-direction1{
+    position: relative;
+    display: inline-flex;
+    transition: all 0.2s;
+}
+.change-direction2{
+    transform: rotate(90deg);
+}
+
+
+/* 下拉菜单 */
+.next-menu{
+    display: none;
+
+}
+.next-menu a{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+
+
+
+
+
+
+
+.admin-right {
+    flex: 30;
+    min-width: 900px;
+}
+
+
+.header {
+    box-sizing: border-box;
+    height: 60px;
+    display: flex;
+}
+
+.header-left {
+    flex: 2;
+    min-width: 400px;
+}
+
+.header-right {
+    min-width: 450px;
+    flex: 5;
+}
+
+.header-right>nav {
+    flex-direction: row-reverse;
+}
+
+/* 切换 */
+
+.change-icon {
+    display: inline-block;
+    position:relative;
+    top:-5px;
+	width: 35px; height: 20px;
+	padding: 4px 0;
+	border-top: 4px solid white;
+	border-bottom: 4px solid white;
+	background-color: white;
+    background-clip: content-box;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+
+
+/* 右侧菜单 */
+.admin-photo{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.header-right .dropdown-menu{
+    min-width: 100%
+}

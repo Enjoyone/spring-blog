@@ -1,0 +1,196 @@
+/* 文章 */
+#article{
+	position: relative;
+}
+.article-whole {
+    display: flex;
+    padding: 30px;
+}
+
+.article-whole>div{
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 20%;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.article-whole{
+    justify-content: space-around;
+
+}
+
+.article-whole>div>div>div:nth-child(1){
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+}
+.article-whole>div>div>div:nth-child(2){
+    text-align: center;
+    font-size: 20px;
+}
+
+
+/* next */
+
+
+
+
+
+
+
+
+
+#operateResult{
+	display: none;
+    position: absolute;
+    z-index: 999;
+    width: 350px;
+    height:150px;
+    font-size:40px;
+    text-align:center;
+ top:100px;
+    left:500px;
+    
+}
+
+
+/* 文章类型 */
+
+
+.qwe{
+    width: 800px;
+}
+.showArticleType tr>td:nth-child(1){
+	cursor:pointer;
+}
+.showArticleType tr>td:nth-child(1){
+	width: 30px;
+}
+.showArticleType tr>td:nth-child(1) input{
+	cursor:pointer;
+}
+
+
+/* 文章类型系列操作 */
+.alert-articleType>div {
+    display: none;
+}
+.close {
+    float: right;
+    position: relative;
+    top: -10px;
+    right: -10px;
+}
+
+/* 添加文章类型 */
+.add-articleType-con>div:nth-child(n+2):nth-child(-n+3) {
+    text-align: center;
+}
+
+.add-articleType-con>div:nth-child(1) {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.add-articleType-con>div:nth-child(3) {
+    padding-bottom: 5px;
+    color: red;
+}
+
+/* 修改类型名称 */
+
+
+
+/* 类型详情 */
+.typeInfo{
+	display: none;
+	
+}
+
+
+/* 删除提示 */
+.cannotDelete{
+	position: absolute;
+}
+.deleteCon{
+	position: absolute;
+	min-width: 300px;
+	min-height:100px;
+}
+.deleteCon div:nth-child(2){
+	display: inline-flex;
+	float:right;
+}
+
+
+/* 文章类型展示 */
+
+
+
+
+
+/* 文章类型具体内容展示 */
+
+
+
+
+/* 模糊 */
+
+
+
+#back{
+	display: none;
+	 position:absolute; 
+	 width:100%; 
+	 min-height: 100%; 
+	 top: 0; 
+	 left: 0;
+	 z-index: 2; 
+	 background: rgba(255, 255, 255, .6);
+}
+
+
+
+/* 申诉 */
+#appeal{
+	display:none;
+	position: absolute;
+	min-width:500px;
+	z-index:999;
+}
+#appeal .appeal-con1{
+	display: flex;
+	align-items: flex-end
+}
+#appeal .appeal-con2{
+	width: 300px;
+	height:100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

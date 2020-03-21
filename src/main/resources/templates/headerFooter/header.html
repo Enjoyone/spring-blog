@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>header</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/headerFooter/header.css">
+
+</head>
+
+<body>
+
+	<div class="header" th:fragment="header">
+		<div class="logo">
+			<nav class="navbar navbar-expand-sm">
+				<a href="index" class="navbar-brand">Co-Blog</a>
+			</nav>
+		</div>
+		<div class="header-left">
+			<nav class="navbar navbar-expand-sm">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="index">首页</a></li>
+					<!-- Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">其他 </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">1</a> <a class="dropdown-item"
+								href="#">2</a>
+						</div></li>
+					<li class="nav-item search-item">
+						<form class="nav-link  form-group" method="post" action="search">
+							<div class="input-group" style="padding: 0px">
+								<select name="searchType" class="form-control">
+									<optgroup label="文章">
+										<option value="1">文章名称</option>
+									</optgroup>
+									<optgroup label="用户">
+										<option value="2">用户名称</option>
+										<option value="3">描述信息</option>
+									</optgroup>
+
+								</select> <input type="text" class="form-control input-search"
+									placeholder="Search" name="searchContent" autocomplete="off">
+								<input type="submit" class="btn btn-success btn-group-sm"
+									value="Go">
+							</div>
+						</form>
+					</li>
+
+					<li class="nav-item"><a class="nav-link" href="info">关于</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="header-right">
+			<nav class="navbar navbar-expand-sm">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="write"><img
+							src="" alt="">写文章</a></li>
+
+
+							<li class="nav-item dropdown user-part" th:if="${userID != null}">
+							<a
+								class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+									<img src="/image/sanyecao.jpg" alt="" class="pPhoto">
+							</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="userCenter">个人中心</a> <a
+										class="dropdown-item" href="userIndex">个人首页</a> <a
+										class="dropdown-item userOut" href="logout">退出</a>
+								</div>
+								</li>
+								
+								
+							<li class="nav-item login_reg" th:if="${userID == null}">
+							<a href="login">登录</a> <a
+								href="register">注册</a>
+								</li>
+
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+
+	<script>
+		$(function() {
+			$(".dropdown").mouseover(function() {
+				$(this).children(".dropdown-menu").stop();
+				$(this).children(".dropdown-menu").show(300);
+			});
+
+			$(".dropdown").mouseleave(function() {
+				$(this).children(".dropdown-menu").stop();
+				$(this).children(".dropdown-menu").hide(800);
+			});
+
+			// $(".userOut").click(function () {
+			//     window.top.location.href = "/logout"
+			// });
+
+		});
+	</script>
+</body>
+</html>
