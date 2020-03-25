@@ -9,7 +9,7 @@ $(function() {
 						if (praise_img.attr("src") == ('article/articleShow/support/Images/yizan.png')) {
 							$(this)
 									.html(
-											"<img src='article/articleShow/support/Images/zan.png' id='praise-img' class='animation' />");
+											"<img src='Images/zan.png' id='praise-img' class='animation' />");
 							praise_txt.removeClass("hover");
 							text_box.show().html(
 									"<em class='add-animation'>-1</em>");
@@ -20,7 +20,7 @@ $(function() {
 						} else {
 							$(this)
 									.html(
-											"<img src='article/articleShow/support/Images/yizan.png' id='praise-img' class='animation' />");
+											"<img src='Images/yizan.png' id='praise-img' class='animation' />");
 							praise_txt.addClass("hover");
 							text_box.show().html(
 									"<em class='add-animation'>+1</em>");

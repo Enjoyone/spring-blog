@@ -1,5 +1,4 @@
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>reg_success</title>
     <style>
@@ -11,7 +10,7 @@
 </head>
 <body>
 
-<div><span >用户:</span><span th:text="${user.userID}"></span>注册成功！<span id="remainSeconds">3</span>秒后...<a href="login">返回登录</a></div>
+<div><span >用户:</span><span th:text="${user1.userName}"></span>注册成功！<span id="remainSeconds">3</span>秒后...<a href="login">返回登录</a></div>
 
 <script type="text/javascript">
 

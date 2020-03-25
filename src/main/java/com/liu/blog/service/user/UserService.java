@@ -12,7 +12,6 @@ import java.util.List;
 public class UserService {
 
 
-
     @Autowired   //  自动导入
     private UserRepository userRepository;
 
@@ -24,9 +23,10 @@ public class UserService {
 
 //    登录
     @ResponseBody
-    public User checkUser(String userID, String userPWD) {
+    public User checkUser(String userName, String userPWD) {
 
-        User user= userRepository.findByUserIDAndStatusTrue(userID);
+        List<User> userList= userRepository.findByUserNameAndStatusTrue(userName);
+        User user=userList.get(0);
         if (user.getUserPWD().equals(userPWD)){
             return user;
         }else{
@@ -39,7 +39,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getOne(String userID){
+    public User getOne(int userID){
         return userRepository.getOne(userID);
     }
 

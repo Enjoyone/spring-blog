@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <meta charset="UTF-8">
 <title>header</title>
@@ -13,14 +13,14 @@
 	<div class="header" th:fragment="header">
 		<div class="logo">
 			<nav class="navbar navbar-expand-sm">
-				<a href="index" class="navbar-brand">Co-Blog</a>
+				<a href="/" class="navbar-brand">Co-Blog</a>
 			</nav>
 		</div>
 		<div class="header-left">
 			<nav class="navbar navbar-expand-sm">
 				<!-- Links -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="index">首页</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">首页</a></li>
 					<!-- Dropdown -->
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">其他 </a>
@@ -60,7 +60,7 @@
 							src="" alt="">写文章</a></li>
 
 
-							<li class="nav-item dropdown user-part" th:if="${userID != null}">
+							<li class="nav-item dropdown user-part" th:if="${user != null}">
 							<a
 								class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 									<img src="/image/sanyecao.jpg" alt="" class="pPhoto">
@@ -73,7 +73,7 @@
 								</li>
 								
 								
-							<li class="nav-item login_reg" th:if="${userID == null}">
+							<li class="nav-item login_reg" th:if="${user == null}">
 							<a href="login">登录</a> <a
 								href="register">注册</a>
 								</li>

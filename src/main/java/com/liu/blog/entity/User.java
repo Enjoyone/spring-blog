@@ -2,18 +2,19 @@ package com.liu.blog.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class User {
 	@Id
-	private String userID;//不设为自动增长
-	
+	@GeneratedValue
+	private int userID;//不设为自动增长
+
+	@Column(length = 30)
+	private String userName;
+
 	@Column(length = 30)
 	private String userPWD;
 	
@@ -35,23 +36,20 @@ public class User {
 	private boolean status=true;
 
 
-
-
-
-
-
-
-
-	public User() {
-
-	}
-
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
 
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserPWD() {
@@ -79,12 +77,12 @@ public class User {
 	}
 
 	public int getAge() {
-		return this.birth.getYear()-LocalDate.now().getYear();
+		return age;
 	}
 
-	//public void setAge(int age) {
-	//	this.age = age;
-	//}
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public LocalDate getBirth() {
 		return birth;
@@ -141,6 +139,4 @@ public class User {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
-	
 }

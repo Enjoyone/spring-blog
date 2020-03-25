@@ -1,4 +1,4 @@
-package com.liu.demo.entity;
+package com.liu.blog.entity;
 
 import java.time.LocalDate;
 

@@ -6,10 +6,26 @@ import org.springframework.stereotype.Service;
 import com.liu.blog.entity.Type;
 import com.liu.blog.repository.TypeRepository;
 
+import java.util.List;
+
 @Service
 public class TypeService {
 	@Autowired   //  自动导入
 	private TypeRepository typeRepository;
+
+//	查询所有type
+	public List<Type> showAllTypes(){
+		return typeRepository.findAll();
+	}
+
+
+	public List<Type> showTypesByUserID(int userID){
+		return typeRepository.backByUserID(userID);
+	}
+
+	public Type getOne(int typeID){
+		return typeRepository.getOne(typeID);
+	}
 
 //	添加
 	public Type addType(Type type) {
@@ -17,10 +33,10 @@ public class TypeService {
 	}
 
 //	修改
-	public Type updateType(Type type){
-		typeRepository.updateTypeName(type);
-		return type;
-	}
+//	public Type updateType(Type type){
+//		typeRepository.updateTypeName(type);
+//		return type;
+//	}
 
 //	修改2
 	public int updateType2(int typeID,String typeName){

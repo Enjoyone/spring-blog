@@ -27,7 +27,7 @@ public class Article {
 	private User user;
 	
 	
-	@Column(length = 30)
+	@Column(length = 3000)
     private String content;
     private LocalDate launchTime=LocalDate.now();
     

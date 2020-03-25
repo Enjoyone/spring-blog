@@ -19,16 +19,29 @@ public class ArticleService {
         return article;
     }
 
-//根据用户ID查询用户的所有文章
-    public List<Article> findAllbyUserID(User user){
+    //根据用户ID查询用户的所有文章
+    public List<Article> findAllbyUserID(User user) {
         return articleRepository.findArticlesByUser(user);
     }
 
-//    查询所有文章
-    public  List<Article> findAll(){
+    //    查询所有文章
+    public List<Article> findAll() {
         return articleRepository.findAll();
     }
 
 
+//    写文章
+
+    public Article addArticle(Article article) {
+        return articleRepository.save(article);
+    }
+
+
+    //    删除文章
+    public boolean deleteArticle(int articleID) {
+        articleRepository.deleteById(articleID);
+        return !articleRepository.existsById(articleID);
+
+    }
 }
 

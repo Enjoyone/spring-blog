@@ -4,7 +4,7 @@ package com.liu.blog.service.admin;
 import com.liu.blog.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.liu.demo.entity.Admin;
+import com.liu.blog.entity.Admin;
 
 @Service
 public class AdminService {
