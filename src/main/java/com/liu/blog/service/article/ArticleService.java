@@ -32,8 +32,9 @@ public class ArticleService {
 
 //    写文章
 
-    public Article addArticle(Article article) {
-        return articleRepository.save(article);
+    public int addArticle(Article article) {
+        articleRepository.save(article);
+        return article.getArticleID();
     }
 
 

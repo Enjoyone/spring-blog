@@ -60,7 +60,7 @@
 							src="" alt="">写文章</a></li>
 
 
-							<li class="nav-item dropdown user-part" th:if="${user != null}">
+							<li class="nav-item dropdown user-part" th:if="${session.user != null}">
 							<a
 								class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 									<img src="/image/sanyecao.jpg" alt="" class="pPhoto">
@@ -73,7 +73,7 @@
 								</li>
 								
 								
-							<li class="nav-item login_reg" th:if="${user == null}">
+							<li class="nav-item login_reg" th:if="${session.user == null}">
 							<a href="login">登录</a> <a
 								href="register">注册</a>
 								</li>

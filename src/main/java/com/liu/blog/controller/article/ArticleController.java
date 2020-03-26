@@ -3,8 +3,6 @@ package com.liu.blog.controller.article;
 import com.liu.blog.entity.Article;
 import com.liu.blog.entity.Type;
 import com.liu.blog.entity.User;
-import com.liu.blog.repository.TypeRepository;
-import com.liu.blog.repository.UserRepository;
 import com.liu.blog.service.article.ArticleService;
 import com.liu.blog.service.type.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,32 +30,23 @@ public class ArticleController {
 
     @GetMapping("/showArticle")
     //     查看文章
-    @ResponseBody
-    public Article findOne(int articleID) {
-        return articleService.findOne(articleID);
+    public String showArticle(Model model, int articleID) {
+        System.out.println("articleID:" + articleID);
+        Article article = articleService.findOne(articleID);
+        model.addAttribute("article", article);
 
 
+        return "article/show";
     }
-
-    public List<Article> findAllArticles() {
-        return articleService.findAll();
-    }
-
-    public List<Article> findArticleByUserID(int userID) {
-        User user = new User();
-        user.setUserID(userID);
-        return articleService.findAllbyUserID(user);
-    }
-
 
     //    写文章
 
 
     @GetMapping("/write")
-    public String toWrite(Model model, HttpServletRequest request) {
-        HttpSession httpSession = request.getSession();
-        User user = (User) httpSession.getAttribute("user");
+    public String toWrite(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
 //        返回文章类型
+
         List<Type> types = typeService.showTypesByUserID(user.getUserID());
         model.addAttribute("types", types);
         return "article/write";
@@ -65,22 +54,26 @@ public class ArticleController {
 
 
     @PostMapping("/write")
-    public Article addArticle(String articleTitle, int typeID, String content, HttpServletRequest request) {
-        HttpSession httpSession = request.getSession();
-        User user = (User) httpSession.getAttribute("user");
+    @ResponseBody
+    public int addArticle(String articleTitle, String content, int type, HttpSession session) {
+        User user = (User) session.getAttribute("user");
 
-        Type type = typeService.getOne(typeID);
+        System.out.println(user.getUserID() + "\t" + user.getUserName());
+
+        Type type1 = typeService.getOne(type);
 
 
         Article article = new Article();
         article.setArticleTitle(articleTitle);
-        article.setType(type);
+        article.setType(type1);
         article.setUser(user);
         article.setContent(content);
+//   返回ID
+        int articleID = articleService.addArticle(article);
 
-        articleService.addArticle(article);
+        System.out.println(articleTitle + "\t" + content + "\t" + type);
 
-        return article;
+        return articleID;
 
     }
 

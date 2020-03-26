@@ -1,7 +1,7 @@
 $(function() {
 	// 输入框
 	var E = window.wangEditor;
-	var editor1 = new E('#article_con');
+	var editor1 = new E('#edit');
 	/*
 	 * editor1.customConfig.menus = [ 'head', // 标题 'bold', // 粗体 'fontSize', //
 	 * 字号 'fontName', // 字体 'italic', // 斜体 'underline', // 下划线 'strikeThrough', //
@@ -60,7 +60,7 @@ $(function() {
 	editor1.customConfig.uploadImgServer = '/articleImage'; // 上传图片到服务器
 
 //	textarea
-	var $text1 = $('#article_con2')
+	var $text1 = $('#content');
 	
 	//
 	editor1.customConfig.onfocus = function() {
@@ -77,7 +77,7 @@ var nw = $(".now-words");
 	editor1.customConfig.onchange = function(html) {
 //		-->textarea
 		$text1.val(html)		
-	}
+	};
 	
 	editor1.create();
 	
@@ -90,7 +90,7 @@ var nw = $(".now-words");
 	
 //	--->textarea  初始化
 //	// 字数 内容同步  无html		
-	$("#article_con").bind("keyup", function() {
+	$("#edit").bind("keyup", function() {
 		$text1.val(editor1.txt.html());
 		var con=editor1.txt.text();
 		var con2=con.replace(/&nbsp;/g, "").replace(/&amp;/g, "").trim();

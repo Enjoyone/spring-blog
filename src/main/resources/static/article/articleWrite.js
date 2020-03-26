@@ -11,7 +11,7 @@ $(function () {
         }
     });
     // 字数 初始化
-    $(".title-words").html($("#article_title").val().length);
+    $(".title-words").html($("#articleTitle").val().length);
 
     // 初始化
     $(".article_oprate input[type=checkbox]").prop("checked", true);
@@ -44,7 +44,7 @@ $(function () {
 
                 } else {
                     $("#comment").prop("checked", false);
-                    $("#share").prop("checked", false);
+                    // $("#share").prop("checked", false);
                 }
             } else {
 
@@ -56,7 +56,7 @@ $(function () {
                     }
                 } else {
                     $("#comment").prop("checked", false);
-                    $("#share").prop("checked", false);
+                    // $("#share").prop("checked", false);
                 }
             }
 
@@ -83,13 +83,13 @@ $(function () {
 
 $(function () {
     var typeNum = 0;
-    $('[name="article_type"]').each(function () {
+    $('[name="type"]').each(function () {
         $(this).children("option").each(function () {
             typeNum = typeNum + 1;
         });
     });
     if (typeNum > 2) {
-        $('[name="article_type"]').change(function () {
+        $('[name="type"]').change(function () {
             var data = $(this).val();
             if (data === "0") {
                 $(".add-articleType").show();
@@ -108,7 +108,7 @@ $(function () {
         function () {
             var eq = false;
             var con = $('[name="new_type_name"]').val();
-            $('[name="article_type"]').each(function () {
+            $('[name="type"]').each(function () {
                 $(this).children("option").each(function () {
                     var n = $(this).text(); // 每一个option
                     if (n === con) {
@@ -126,7 +126,7 @@ $(function () {
                     type: "get",
                     url: "addType",
                     data: {
-						typeName: con
+                        typeName: con
                     },
                     datatype: "json",
                     success: function (data) {
@@ -141,10 +141,10 @@ $(function () {
                             $(".add-articleType").hide();
                             // 刷新文章类型
 
-                            $('[name="article_type"]').prepend(
+                            $('[name="type"]').prepend(
                                 "<option value='" + data + "'>" + con
                                 + "</option>");
-                            $('[name="article_type"]').val(data);
+                            $('[name="type"]').val(data);
                             $(".add-articleType").hide();
 
                         } else {
@@ -161,56 +161,48 @@ $(function () {
 
 $(function () {
 
-    function artilceData(articleDraft) {
-        var articleID = $(".articleID").text();
-        var article_title = $('[name="article_title"]');
-        var articleType = $('[name="article_type"]');
-        // var article_con = $('#article_con');
-
-        var a = new Array();
-
-        $('[name="operateType"]:checked').each(function () {
-            a.push(parseInt($(this).val()));
-        });
-
-        var article = {
-            articleID: articleID,
-            articleTitle: article_title.val(),
-            articleType: articleType.val(),
-            articleContent: $("#article_con2").val(),
-            operate: a,
-            articleDraft: articleDraft
-
-        }
-        var jsonData = JSON.stringify(article);
-
-        return jsonData;
-    }
-    ;
 
     // 1. 立即提交
     $(".submit-button").click(function () {
-        ajaxArticle("0");
-    });
+        // console.log("11");
+        // ajaxArticle("0");
 
-    // 2. 存稿
-    $(".draft-button").click(function () {
-        ajaxArticle("1");
-    });
+        var articleTitle = $('[name="articleTitle"]').val();
+        var type = $('[name="type"]').val();
+        var content = $('#content').val();
 
-    function ajaxArticle(isdraft) {
-        var isExited = $(".isExited").text();
-        if (isExited == 1) {
-            isExited = "1";
-        }
-        console.log(isExited);
-        var jsonData = artilceData(isdraft);
+        // var a = new Array();
+        //
+        // $('[name="operateType"]:checked').each(function () {
+        //     a.push(parseInt($(this).val()));
+        // });
+
+        // var article = {
+        //     articleID: articleID,
+        //     articleTitle: articleTitle.val(),
+        //     type: type.val(),
+        //     content: $("#article_con2").val(),
+        //     operate: a,
+        //     articleDraft: articleDraft
+        //
+        // };
+        // var jsonData = JSON.stringify(article);
+        //
+        // return jsonData;
+
+        console.log(articleTitle);
+        console.log(type);
+        console.log(content);
+
+
         $.ajax({
             type: "post",
             url: "write",
             data: {
-                isExited: isExited,
-                article: jsonData
+                articleTitle: articleTitle,
+                type: type,
+                content: content,
+
             },
             datatype: "json",
             success: function (data) {
@@ -223,7 +215,7 @@ $(function () {
                     setInterval(function () {
                         sec--;
                         if (sec < 0) {
-                            window.location.href = "articleShow?articleID="
+                            window.location.href = "showArticle?articleID="
                                 + data;
                         }
                     }, 1000);
@@ -257,6 +249,13 @@ $(function () {
 
             }
         });
-    }
+
+
+    });
+
+    // 2. 存稿
+    // $(".draft-button").click(function () {
+    //     ajaxArticle("1");
+    // });
 
 });

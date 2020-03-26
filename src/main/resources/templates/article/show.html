@@ -13,50 +13,48 @@
 <div id="result"></div>
 <div th:include="/headerFooter/header :: html"></div>
 <div class="container">
-    <c:forEach items="${articleList}" var="p" varStatus="vs">
+    <div>
+        <span class="articleID" style="display: none;" th:text="${article.articleID}"></span>
+        <p class="article-title text-center p-2" th:text="${article.articleTitle}"></p>
+        <p class="article-inf text-center">
+            <a href="" th:text="${article.user.userName}"></a>
+            <span>字数</span><span class="article_word">字数</span>
+            <span class="article_time" th:text="${article.launchTime}"></span>
+        </p>
+    </div>
+    <div class="pl-2 pr-2" th:utext="${article.content}"></div>
+    <hr>
+    <div class="article-oprate">
+        <!-- 点赞 -->
+        <!--        <div class="praise">-->
+        <!--					<span id="praise"> <c:if test="${isSupport eq true }">-->
+        <!--							<img src="../../static/article/support/Images/yizan.png"-->
+        <!--                                 id="praise-img"/>-->
+        <!--						</c:if> <c:if test="${isSupport eq false}">-->
+        <!--							<img src="../../static/article/support/Images/zan.png"-->
+        <!--                                 id="praise-img"/>-->
+        <!--						</c:if>-->
+
+        <!--					</span> <span id="praise-txt">${p.supportNum }</span> <span id="add-num"><em>+1</em></span>-->
+        <!--        </div>-->
+
+        <!-- 评论 -->
+
         <div>
-            <span class="articleID" style="display: none;">${p.articleID}</span>
-            <p class="article-title text-center p-2">${p.articleTitle }</p>
-            <p class="article-inf text-center">
-                <a href="userIndex?userID=${p.userInfo.userID }">${p.userInfo.userID }</a>
-                <span>字数</span><span class="article_word">${p.articleContent.length() }</span>
-                <span class="article_time">${p.launchTime }</span>
-            </p>
-        </div>
-        <div class="pl-2 pr-2">${p.articleContent}</div>
-        <hr>
-        <div class="article-oprate">
-            <!-- 点赞 -->
-            <div class="praise">
-					<span id="praise"> <c:if test="${isSupport eq true }">
-							<img src="../../static/article/support/Images/yizan.png"
-                                 id="praise-img"/>
-						</c:if> <c:if test="${isSupport eq false}">
-							<img src="../../static/article/support/Images/zan.png"
-                                 id="praise-img"/>
-						</c:if>
-
-					</span> <span id="praise-txt">${p.supportNum }</span> <span id="add-num"><em>+1</em></span>
-            </div>
-
-            <!-- 评论 -->
-
-            <div>
-                <div class="comment-icon">
-                    <div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div class="out"></div>
-                    <div class="in"></div>
-                    <span>${p.commentNum }</span>
+            <div class="comment-icon">
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
-
+                <div class="out"></div>
+                <div class="in"></div>
+                <!--                <span>${p.commentNum }</span>-->
             </div>
 
         </div>
-    </c:forEach>
+
+    </div>
 
 
     <div class="comment">
@@ -74,17 +72,15 @@
         </div>
 
         <div class="comment-con">
-            <c:forEach items="${comments }" var="p" varStatus="vs">
-                <div class="per-c">
-                    <div>${p.userID.userID}</div>
-                    <div>
-                        <div>${p.content}</div>
-                        <div>${p.createTime}</div>
-                    </div>
+            <div class="per-c">
+                <!--                    <div>${p.userID.userID}</div>-->
+                <!--                    <div>-->
+                <!--                        <div>${p.content}</div>-->
+                <!--                        <div>${p.createTime}</div>-->
+                <!--                    </div>-->
 
 
-                </div>
-            </c:forEach>
+            </div>
 
 
         </div>

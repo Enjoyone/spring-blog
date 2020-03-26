@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
-@SessionAttributes(value = "user")
+//@SessionAttributes(value = "user")
 public class UserController {
 
 
@@ -43,11 +45,11 @@ public class UserController {
 
     @PostMapping("/login")
 
-    public String loginCheck(Model model,String userName, String userPWD) {
-        System.out.println("userName:\t"+userName+"userPWD:\t"+userPWD);
+    public String loginCheck(Model model, String userName, String userPWD, HttpSession session) {
+        System.out.println("userName:\t" + userName + "userPWD:\t" + userPWD);
         User user = userService.checkUser(userName, userPWD);
         if (user != null) {
-            model.addAttribute("user",user);//session
+            session.setAttribute("user", user);
             return "forward:/";
         } else {
             return "loginRegister/login";
@@ -56,10 +58,10 @@ public class UserController {
     }
 
 
-//    退出
+    //    退出
     @GetMapping("/logout")
-    public String logout(SessionStatus sessionStatus){
-       sessionStatus.setComplete();
+    public String logout(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
         return "redirect:/";
     }
 
