@@ -5,7 +5,7 @@
 <head>
     <title>login</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="loginRegister/login.css">
+    <link rel="stylesheet" href="/res/loginRegister/login.css">
 
 </head>
 
@@ -95,28 +95,6 @@
         })
     })
 </script>
-<script>
-    $(function () {
-        <%
-        try{
-            String error=request.getParameter("error").toString();
-
-            %>
-        var loginerror = '<%=error%>';
-        if (loginerror === 'yes') {
-            $(".error-inf").html("账号或密码错误！");
-        }
-        <%
-    }catch(Exception e){
-
-    }
-    %>
-
-    });
-
-
-</script>
-
 
 </body>
 

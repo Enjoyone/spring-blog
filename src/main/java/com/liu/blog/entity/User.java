@@ -3,6 +3,7 @@ package com.liu.blog.entity;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,9 +14,11 @@ public class User {
 	private int userID;//不设为自动增长
 
 	@Column(length = 30)
+	@NotBlank(message = "用户名不能为空")
 	private String userName;
 
 	@Column(length = 30)
+	@NotBlank(message = "姓名不能为空")
 	private String userPWD;
 	
 	@Column(length = 50)

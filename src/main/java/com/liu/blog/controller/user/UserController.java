@@ -1,17 +1,22 @@
 package com.liu.blog.controller.user;
 
 
+import com.liu.blog.entity.Article;
+import com.liu.blog.entity.Type;
 import com.liu.blog.entity.User;
+import com.liu.blog.service.article.ArticleService;
+import com.liu.blog.service.type.TypeService;
 import com.liu.blog.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -22,6 +27,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ArticleService articleService;
+
+    @Autowired
+    private TypeService typeService;
+
+
+//    user index
+
+    @GetMapping("/userIndex")
+    public String userIndex(int userID, Model model) {
+//        返回个人的文章及所有类型
+        User user = userService.getOne(userID);
+        List<Article> articles = articleService.findAllbyUserID(userID);
+        List<Type> types = typeService.showTypesByUserID(userID);
+
+
+        model.addAttribute("user", user);
+        model.addAttribute("articles", articles);
+        model.addAttribute("types", types);
+        return "user/userIndex/userIndex";
+    }
+
 
     //注册
     @GetMapping("/register")
@@ -30,9 +58,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String addUser(User user) {
+    public String addUser(@Valid  User user, BindingResult bindingResult,Model model) {
         System.out.println("register post");
-        User user1 = userService.addUser(user);
+        userService.addUser(user);
+        model.addAttribute("user",user);
+        if (bindingResult.hasErrors()){
+            return "loginRegister/register";
+        }
         return "loginRegister/registerSuccess";
     }
 
@@ -60,10 +92,11 @@ public class UserController {
 
     //    退出
     @GetMapping("/logout")
-    public String logout(SessionStatus sessionStatus) {
-        sessionStatus.setComplete();
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/";
     }
+
 
 
 }

@@ -20,8 +20,8 @@ public class ArticleService {
     }
 
     //根据用户ID查询用户的所有文章
-    public List<Article> findAllbyUserID(User user) {
-        return articleRepository.findArticlesByUser(user);
+    public List<Article> findAllbyUserID(int userID) {
+        return articleRepository.findArticlesByUser(userID);
     }
 
     //    查询所有文章
