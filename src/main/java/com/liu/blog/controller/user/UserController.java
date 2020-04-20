@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 
@@ -34,23 +36,6 @@ public class UserController {
     private TypeService typeService;
 
 
-//    user index
-
-    @GetMapping("/userIndex")
-    public String userIndex(int userID, Model model) {
-//        返回个人的文章及所有类型
-        User user = userService.getOne(userID);
-        List<Article> articles = articleService.findAllbyUserID(userID);
-        List<Type> types = typeService.showTypesByUserID(userID);
-
-
-        model.addAttribute("user", user);
-        model.addAttribute("articles", articles);
-        model.addAttribute("types", types);
-        return "user/userIndex/userIndex";
-    }
-
-
     //注册
     @GetMapping("/register")
     public String addUser() {
@@ -58,11 +43,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String addUser(@Valid  User user, BindingResult bindingResult,Model model) {
+    public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
         System.out.println("register post");
         userService.addUser(user);
-        model.addAttribute("user",user);
-        if (bindingResult.hasErrors()){
+        model.addAttribute("user", user);
+        if (bindingResult.hasErrors()) {
             return "loginRegister/register";
         }
         return "loginRegister/registerSuccess";
@@ -98,5 +83,54 @@ public class UserController {
     }
 
 
+    //    个人中心
+    @GetMapping("/userCenter")
+    public String userCenter(String type, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        List<Article> articles = articleService.findAllbyUserID(user.getUserID());
+        List<Type> types = typeService.showTypesByUserID(user.getUserID());
+
+        model.addAttribute("user", user);
+        model.addAttribute("articles", articles);
+        model.addAttribute("types", types);
+
+        if (type != null) {
+            System.out.println(type);
+            if (type.equals("blog")) {
+                return "user/userCenter/blog";
+            } else {
+                return "user/userCenter/account";
+            }
+        } else {
+
+            LocalDate today = LocalDate.now();
+            LocalDate registerTime = user.getRegisterTime();
+
+            Period p = Period.between(registerTime, today);
+            System.out.print(p.getDays());
+            model.addAttribute("days", p.getDays());
+
+            return "user/userCenter/userCenterIndex";
+        }
+    }
+
+
+    //  个人首页     userIndex
+    @GetMapping("/userIndex")
+    public String userIndex(int userID, Model model) {
+        System.out.println("userID-->index" + userID);
+
+        User user = userService.getOne(userID);
+
+        List<Article> articles = articleService.findAllbyUserID(userID);
+        List<Type> types = typeService.showTypesByUserID(userID);
+
+        model.addAttribute("user", user);
+        model.addAttribute("articles", articles);
+        model.addAttribute("types", types);
+
+        return "user/userIndex/userIndex";
+    }
 
 }

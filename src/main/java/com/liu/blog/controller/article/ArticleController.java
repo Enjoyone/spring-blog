@@ -35,7 +35,6 @@ public class ArticleController {
         Article article = articleService.findOne(articleID);
         model.addAttribute("article", article);
 
-
         return "article/show";
     }
 
@@ -103,5 +102,14 @@ public class ArticleController {
     public String showType() {
         List<Type> types = typeService.showAllTypes();
         return "showType";
+    }
+
+
+    //    文章修改
+    @GetMapping("/modifyArticle")
+    @ResponseBody
+    public String modifyArticle(int articleID) {
+
+        return null;
     }
 }

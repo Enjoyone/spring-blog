@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<title>userCenterCommon</title>
+    <meta charset="UTF-8">
+    <title>userCenterCommon</title>
 
 </head>
 
 <body>
-	<div>
-		<div class="user-introduction ">
-			<div>
-				<img src="image/sanyecao.jpg">
-			</div>
-			<div>${userID}</div>
-		</div>
-		<hr>
-		
-		<div class="userCenter-menu">
-			<ul class="nav flex-column">
-				<!-- nav-pills  -->
-				<a class="nav-link active" href="uCenter">个人中心</a>
-				<a class="nav-link" href="uBlog">博客</a>
-				<a class="nav-link" href="uAccount">账号</a>
-			</ul>
+<div th:fragment="userCenter">
+    <div class="user-introduction ">
+        <div>
+            <img src="image/sanyecao.jpg" alt="photo">
+        </div>
+        <div th:text="${session.user.userName}"></div>
+    </div>
+    <hr>
 
-		</div>
+    <div class="userCenter-menu">
+        <ul class="nav flex-column">
+            <!-- nav-pills  -->
+            <a class="nav-link active" th:href="@{/userCenter}">个人中心</a>
+            <a class="nav-link" th:href="@{'userCenter?type=blog'}">博客</a>
+            <a class="nav-link" th:href="@{'userCenter?type=account'}">账号</a>
+        </ul>
 
-	</div>
+    </div>
+
+</div>
 
 
-	<script>
-		$(function() {
-			$('#uCenter').addClass("active");
-			// 个人中心，博客，账号
-			$('.userCenter-menu a').click(function() {
-				$(this).addClass("active");
-				$(this).siblings().removeClass("active");
-			});
-		});
-	</script>
+<script>
+    $(function () {
+        $('#uCenter').addClass("active");
+        // 个人中心，博客，账号
+        $('.userCenter-menu a').click(function () {
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        });
+    });
+</script>
 
 </body>
 </html>

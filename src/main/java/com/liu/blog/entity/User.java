@@ -11,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
 	@Id
 	@GeneratedValue
-	private int userID;//不设为自动增长
+	private int userID;//设为自动增长
 
 	@Column(length = 30)
 	@NotBlank(message = "用户名不能为空")

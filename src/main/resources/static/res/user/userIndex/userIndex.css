@@ -8,7 +8,7 @@
 
 .con-right {
     flex: 1;
-    
+
 }
 
 /* 展示用户信息部分 */
@@ -23,9 +23,11 @@
     display: flex;
     position: relative;
 }
-.user-inf>div:nth-child(1){
+
+.user-inf > div:nth-child(1) {
     flex: 1;
 }
+
 .user-photo {
     flex: 6;
 }
@@ -34,12 +36,12 @@
     flex: 40;
 }
 
-.user-inf-more .user-name>span:nth-child(1) {
+.user-inf-more .user-name > span:nth-child(1) {
     font-size: 30px;
     padding: 10px;
 }
 
-.user-inf-more .user-name>span:nth-child(2) {
+.user-inf-more .user-name > span:nth-child(2) {
     font-size: 15px;
     float: right;
     position: relative;
@@ -51,34 +53,33 @@
     padding-top: 10px;
 }
 
-.user-inf-more .article-inf>span:nth-child(1),
-.user-inf-more .article-inf>span:nth-child(3) {
+.user-inf-more .article-inf > span:nth-child(1),
+.user-inf-more .article-inf > span:nth-child(3) {
     font-size: 15px;
 }
 
-.user-inf-more .article-inf>span:nth-child(2),
-.user-inf-more .article-inf>span:nth-child(4) {
+.user-inf-more .article-inf > span:nth-child(2),
+.user-inf-more .article-inf > span:nth-child(4) {
     font-size: 25px;
     font-weight: bold;
 }
 
 
 /* con-right  自我描述  */
-.con-right{
-	
-}
-.con-right>div>div:nth-child(1){
-	font-size: 25px;
-	text-align: center;
-	padding: 10px;
-}
-.con-right>div>div p{
-	text-indent: 2em;
-	padding: 5px;
+.con-right {
+
 }
 
+.con-right > div > div:nth-child(1) {
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+}
 
-
+.con-right > div > div p {
+    text-indent: 2em;
+    padding: 5px;
+}
 
 
 /* 展示文章 */
@@ -87,7 +88,13 @@
 
 }
 
+.article-per-con {
+    /*display: flex;*/
+}
+
 .articleCon {
+    display: flex;
+
     font-size: 25px;
     text-indent: 2em;
     display: -webkit-box;
@@ -98,34 +105,35 @@
 }
 
 /*  */
-.articleInfo{
-	position:relative;
-	padding-top: 5px;
-}
-.articleInfo span:last-child{
-	float: right;
-}
-.articleInfo span{
-	margin-right: 20px;
+.articleInfo {
+    display: flex;
+    position: relative;
+    padding-top: 5px;
 }
 
+.articleInfo span {
+    padding: 5px;
+}
 
-
+.articleInfo span {
+    /*margin-right: 20px;*/
+}
 
 
 /* 左侧用户的文章类型 */
-.left-typeName{
-	position: relative;
+.left-typeName {
+    position: relative;
 }
 
-.left-typeName label{
-	text-align:center;
-	display:flex;
-	width: 100%;
-	cursor: pointer;
+.left-typeName label {
+    text-align: center;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
 }
-.left-typeName label a{
-	text-decoration: none;
+
+.left-typeName label a {
+    text-decoration: none;
 }
 
 
