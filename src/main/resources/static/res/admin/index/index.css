@@ -1,0 +1,41 @@
+.con a {
+    /*display: flex;*/
+}
+
+.con > div {
+    display: flex;
+    /*height: 100px;*/
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.con > div > div {
+    background: lightgoldenrodyellow;
+    padding: 15px;
+    margin: 40px 30px 30px;
+    text-align: center;
+    border-radius: 20%;
+    width: 250px;
+
+}
+
+.con > div > div div:nth-child(1) {
+    font-size: 30px;
+}
+
+.con > div > div div:nth-child(2) {
+    font-size: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
