@@ -1,162 +1,263 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<base href="<%=basePath%>">
-<title>account</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="res/user/userCenter/userCenterCommon.css">
-<link rel="stylesheet" href="res/user/userCenter/account/account.css">
+    <base href="<%=basePath%>">
+    <title>account</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="res/user/userCenter/userCenterCommon.css">
+    <link rel="stylesheet" href="res/user/userCenter/account/account.css">
 
 
 </head>
 <body>
-	<div class="userCenterTop">
-		<div th:include="/headerFooter/header :: html"></div>
-	</div>
+<div class="userCenterTop">
+    <div th:include="/headerFooter/header :: html"></div>
+</div>
 
-	<div class="userCenterCon">
+<div class="userCenterCon">
 
-		<div class="userCenterConLeft">
-			<div th:include="/user/userCenter/userCenterCommon :: html"></div>
-		</div>
-
-
-		<div class="userCenterConRight">
-			<br>
-			<div id="basicInfo" class="container">
-				<div>
-					<a href="javscript:void(0)" data-toggle="modal"
-						data-target="#changePWD">修改密码</a>
-				</div>
-				<div>
-					<table class=" table table-striped table-hover">
-						<tr>
-							<td>手机号：</td>
-							<td th:text="${user.phone}"></td>
-							<td><a href="javascript:void(0)" class="change-account">修改</a></td>
-						</tr>
-						<tr>
-							<td>Email：</td>
-							<td th:text="${user.email}">m</td>
-							<td><a href="javascript:void(0)" class="change-account">修改</a></td>
-						</tr>
-						<tr>
-							<td>微信号：</td>
-							<td th:text="${user.wechat}"></td>
-							<td><a href="javascript:void(0)" class="change-account">修改</a></td>
-						</tr>
-					</table>
-				</div>
+    <div class="userCenterConLeft">
+        <div th:include="/user/userCenter/userCenterCommon :: html"></div>
+    </div>
 
 
-			</div>
-
-		</div>
-
-	</div>
-
-	<!-- 修改密码 -->
-	<div class="modal fade" id="changePWD">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">修改密码</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-
-				<div class="modal-body">
-					<div id="change_password" class="">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">旧密码</span>
-							</div>
-							<input type="text" class="form-control" placeholder=""
-								id="old_password" name="old_password">
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">新密码</span>
-							</div>
-							<input type="text" class="form-control" placeholder=""
-								id="new_password1" name="new_password1">
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">新密码</span>
-							</div>
-							<input type="text" class="form-control" placeholder=""
-								id="new_password2" name="new_password2">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="modal-footer">
-				<span class="pwd-warn"style="display: none;">新密码不相同</span>
-					<button type="button" class="btn btn-success submit">确认</button>
-					<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
+    <div class="userCenterConRight">
+        <br>
+        <div id="basicInfo" class="container">
+            <div>
+                <a href="javscript:void(0)" data-toggle="modal"
+                   data-target="#changePWD">修改密码</a>
+            </div>
+            <div>
+                <table class=" table table-striped table-hover">
+                    <tr>
+                        <td>手机号：</td>
+                        <td th:text="${user.phone}"></td>
+                        <td><a href="javascript:void(0)" class="change-account" data-toggle="modal"
+                               data-target="#changePhone">修改</a></td>
+                    </tr>
+                    <tr>
+                        <td>Email：</td>
+                        <td th:text="${user.email}"></td>
+                        <td><a href="javascript:void(0)" class="change-account" data-toggle="modal"
+                               data-target="#changeEmail">修改</a></td>
+                    </tr>
+                    <tr>
+                        <td>微信号：</td>
+                        <td th:text="${user.wechat}"></td>
+                        <td><a href="javascript:void(0)" class="change-account" data-toggle="modal"
+                               data-target="#changeWeChat">修改</a></td>
+                    </tr>
+                </table>
+            </div>
 
 
-	<div class="userCenterBottom">
-		<div th:include="/headerFooter/footer :: html"></div>
-	</div>
+        </div>
+
+    </div>
+
+</div>
 
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+<div class="modal fade" id="changePWD">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改密码</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
 
-	<script>
-		$(function() {
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div id="changeContent" class="">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">旧密码</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder=""
+                                   id="old_password" name="old_password">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">新密码</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder=""
+                                   id="new_password1" name="new_password1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">新密码</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder=""
+                                   id="new_password2" name="new_password2">
+                        </div>
+                    </div>
 
-			$("#changePWD .submit").click(function() {
-				var old=$("#old_password").val();
-				var new1=$("#new_password1").val();
-				var new2=$("#new_password2").val();
-				
-				if(new1!=new2){
-					$(".pwd-warn").show();
-					return false;
-				}
-			
-				$.ajax({
-					type : "post",
-					url : "uAccount",
-					data : {
-						old:old,
-				     new1:new1
-						
-					},
-					datatype : "json",
-					success : function(data) {
-						console.log(data);
-						if(data==1){
-							$(".pwd-warn").html("");
-							$(".pwd-warn").html("修改成功！");
-							$(".pwd-warn").show();
-							var sec = 1;
-							setInterval(function(){
-								 sec--;
-								    if (sec<0) {
-								    	window.location.reload();
-								    }
-							}, 500);
-						}else{
-							$(".pwd-warn").html("");
-							$(".pwd-warn").html("修改失败！");
-							$(".pwd-warn").show();
-						}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success submit">确认</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+                    </div>
 
-					}
-				});
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-			});
-	
-		});
-	</script>
+<div class="modal fade" id="changePhone">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改手机号</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="changeContent">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">新手机号</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder=""
+                               name="content">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="changeEmail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改邮箱号</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="changeContent">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">新邮箱号</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder=""
+                               name="content">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changeWeChat">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改微信号</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="changeContent">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">新微信号</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder=""
+                               name="content">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="userCenterBottom">
+    <div th:include="/headerFooter/footer :: html"></div>
+</div>
+
+
+<!--修改用户信息-->
+<div class="modal fade" id="changeInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">修改信息</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+
+
+                <div class="change_user_information-con alert-danger"
+                     style="display: none">
+                    <div class="">
+                        <label>登录名： <input type="text" name="userName"
+                                           class=" form-control" readonly="readonly"
+                                           th:value="${user.userName}">
+                        </label> <label>姓名： <input type="text" name="name"
+                                                   class=" form-control" th:value="${user.name}">
+                    </label> <label>性别：
+                        <input type="radio" name="gender" value="男" th:checked="${user.gender eq '男'}">男
+                        <input type="radio" name="gender" value="女" th:checked="${user.gender eq '女'}">女<br>
+                    </label>
+                        <div>
+                            <!--                                <span>出生日期：</span>-->
+                            <!--                                <span class="hide-birth" style="display: none;">${user.birth}</span>-->
+                            <!--                                <%@include file="../../../static/timeChoose/time.jsp"%>-->
+                        </div>
+                        <label for="introduction">描述信息：</label>
+                        <div><span>原：</span><span th:text="${user.introduction}"></span></div>
+                        <textarea name="introduction" id="introduction" cols="30"
+                                  rows="10" class="form-control"></textarea>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success m-1 pr-3 pl-3 submit-btn">确认
+                </button>
+                <button type="button"
+                        class="btn btn-secondary m-1 pr-3 pl-3 cancel-btn" data-dismiss="modal">取消
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="res/user/userCenter/account/account.js"></script>
+
 </body>
 </html>

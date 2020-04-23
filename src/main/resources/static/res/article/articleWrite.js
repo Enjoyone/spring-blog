@@ -14,22 +14,22 @@ $(function () {
     $(".title-words").html($("#articleTitle").val().length);
 
     // 初始化
-    $(".article_oprate input[type=checkbox]").prop("checked", true);
-    $(".article_oprate label").find("span:first-child").css("background",
+    $(".article_operate input[type=checkbox]").prop("checked", true);
+    $(".article_operate label").find("span:first-child").css("background",
         "#5FB878");
-    $(".article_oprate label").find("span:last-child").css({
+    $(".article_operate label").find("span:last-child").css({
         "opacity": "1",
         "border-color": "#5FB878"
     });
 
-    $(".article_oprate label").mouseover(function () {
+    $(".article_operate label").mouseover(function () {
         if ($(this).prev().prop("checked")) {
 
         } else {
             $(this).find("span:last-child").css("opacity", "0.6");
         }
     });
-    $(".article_oprate label").mouseleave(function () {
+    $(".article_operate label").mouseleave(function () {
         if ($(this).prev().prop("checked")) {
 
         } else {
@@ -37,7 +37,7 @@ $(function () {
         }
     });
 
-    $(".article_oprate input").click(
+    $(".article_operate input").click(
         function () {
             if ($(this).attr("id") == "public") {
                 if ($(this).prop("checked")) {
@@ -61,14 +61,14 @@ $(function () {
             }
 
             // 采用循环，整体改变
-            $(".article_oprate-p input[type=checkbox][checked]").each(
+            $(".article_operate-p input[type=checkbox][checked]").each(
                 function () {
                     $(this).next().find("span:first-child").css(
                         "background", "#5FB878");
                     $(this).next().find("span:last-child").css(
                         "opacity", "1");
                 });
-            $(".article_oprate-p input[type=checkbox]").not(":checked")
+            $(".article_operate-p input[type=checkbox]").not(":checked")
                 .each(
                     function () {
                         $(this).next().find("span:first-child")

@@ -4,7 +4,7 @@
 }
 
 /*标题*/
-input[name="article_title"]{
+input[name="articleTitle"]{
     border-top: none;
     border-left: none;
     border-right: none;
@@ -18,7 +18,7 @@ input[name="article_title"]{
 	font-size: 25px;
     padding-top: 20px;
 }
-#article_con{
+#content{
    border: 1px solid #ccc;
    min-height: 300px;
 }
@@ -43,7 +43,7 @@ input[name="article_title"]{
 
 
 /* 文章 选项 解释*/
-.article_oprate_info{
+.article_operate_info{
     position: relative;
     top: 2px;
 }

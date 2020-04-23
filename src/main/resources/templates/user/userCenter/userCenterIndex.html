@@ -85,48 +85,71 @@
                             </table>
                         </div>
                         <div class="">
-                            <a href="javascript:void(0)" class="change-user-information">修改资料</a>
+                            <a href="javascript:void(0)" class="change-user-information" data-toggle="modal"
+                               data-target="#changeInfo">修改资料</a>
                         </div>
                     </div>
 
-                    <div class="change_user_information-con alert-danger"
-                         style="display: none">
-                        <div class="">
-                            <label>登录名： <input type="text" name="userID"
-                                               class=" form-control" readonly="readonly"
-                                               th:value="${user.userName}">
-                            </label> <label>姓名： <input type="text" name="userName"
-                                                       class=" form-control" th:value="${user.name}">
-                        </label> <label>性别：
-                            <input type="radio" name="gender" value="男" th:checked="${user.gender eq '男'}">男
-                            <input type="radio" name="gender" value="女" th:checked="${user.gender eq '女'}">女<br>
-                        </label>
-                            <div>
-                                <!--                                <span>出生日期：</span>-->
-                                <!--                                <span class="hide-birth" style="display: none;">${user.birth}</span>-->
-                                <!--                                <%@include file="../../../static/timeChoose/time.jsp"%>-->
-                            </div>
-                            <label for="introduction">描述信息：</label>
-                            <div><span>原：</span><span th:text="${user.introduction}"></span></div>
-                            <textarea name="introduction" id="introduction" cols="30"
-                                      rows="10" class=" form-control"></textarea>
-                            <div class="text-center">
-                                <button type="button"
-                                        class="btn btn-success m-1 pr-3 pl-3 submit-btn">确认
-                                </button>
-                                <button type="button"
-                                        class="btn btn-secondary m-1 pr-3 pl-3 cancel-btn">取消
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div id="message" class="container tab-pane fade">消息</div>
         </div>
-
+        <div id="message" class="container tab-pane fade">消息</div>
     </div>
 
+</div>
+
+<!--修改用户信息-->
+<div class="modal fade" id="changeInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">修改信息</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+
+
+                <div class="change_user_information-con alert-danger"
+                     style="display: none">
+                    <div class="">
+                        <label>登录名： <input type="text" name="userName"
+                                           class=" form-control" readonly="readonly"
+                                           th:value="${user.userName}">
+                        </label> <label>姓名： <input type="text" name="name"
+                                                   class=" form-control" th:value="${user.name}">
+                    </label> <label>性别：
+                        <input type="radio" name="gender" value="男" th:checked="${user.gender eq '男'}">男
+                        <input type="radio" name="gender" value="女" th:checked="${user.gender eq '女'}">女<br>
+                    </label>
+                        <div>
+                            <!--                                <span>出生日期：</span>-->
+                            <!--                                <span class="hide-birth" style="display: none;">${user.birth}</span>-->
+                            <!--                                <%@include file="../../../static/timeChoose/time.jsp"%>-->
+                        </div>
+                        <label for="introduction">描述信息：</label>
+                        <div><span>原：</span><span th:text="${user.introduction}"></span></div>
+                        <textarea name="introduction" id="introduction" cols="30"
+                                  rows="10" class="form-control"></textarea>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success m-1 pr-3 pl-3 submit-btn">确认
+                </button>
+                <button type="button"
+                        class="btn btn-secondary m-1 pr-3 pl-3 cancel-btn" data-dismiss="modal">取消
+                </button>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 

@@ -31,12 +31,18 @@ public class UserService {
     public User checkUser(String userName, String userPWD) {
 
         List<User> userList = userRepository.findByUserNameAndStatusTrue(userName);
-        User user = userList.get(0);
-        if (user.getUserPWD().equals(userPWD)) {
-            return user;
-        } else {
+        if (userList.size() < 1) {
             return null;
+        } else {
+            User user = userList.get(0);
+            if (user.getUserPWD().equals(userPWD)) {
+                return user;
+            } else {
+                return null;
+
+            }
         }
+
     }
 
     //    查询

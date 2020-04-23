@@ -1,13 +1,13 @@
-.article_oprate-p{
+.article_operate-p{
     display: flex;
     height: 35px;
 }
-.article_oprate {
+.article_operate {
     position: relative;
     width: 100px;
 }
 
-.article_oprate label {
+.article_operate label {
     cursor: pointer;
     position: absolute;
     width: 70px;
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.article_oprate label>span:first-child {
+.article_operate label>span:first-child {
     font-size: 12px;
     background:  #c2c2c2;
     color: aliceblue;
@@ -30,7 +30,7 @@
 }
 
 
-.article_oprate .yes {
+.article_operate .yes {
     display: flex;
     opacity: 0.3;
     content: '';

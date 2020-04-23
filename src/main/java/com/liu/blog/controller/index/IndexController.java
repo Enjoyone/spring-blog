@@ -35,4 +35,14 @@ public class IndexController {
         return "info/info";
     }
 
+
+//    精选
+
+
+//    月佳
+
+
+
+
+
 }
