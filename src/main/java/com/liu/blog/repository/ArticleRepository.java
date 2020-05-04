@@ -15,4 +15,8 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     @Query("select a from Article a where a.user.userID=?1")
     List<Article> findArticlesByUser(int userID);
 
+
+    List<Article> findByArticleTitleContains(String articleTitle);
+
+
 }

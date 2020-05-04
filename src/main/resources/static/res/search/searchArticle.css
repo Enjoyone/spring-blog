@@ -25,7 +25,7 @@
 	font-size: 20px;
 	text-indent: 2em;
 	-webkit-line-clamp: 2;
-	padding-bottom: 5px;
+	/*padding-bottom: 5px;*/
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -37,6 +37,11 @@
 	padding: 2px;
 	margin-left: 10px;
 }
+.blog-bottom .blog-comment {
+	margin-left: 5px;
+}
+
+
 
 .launch-time {
 	float: right;

@@ -10,7 +10,6 @@
 
 <body>
 
-<div id="result"></div>
 <div th:include="/headerFooter/header :: html"></div>
 <div class="container">
     <div>
@@ -18,7 +17,7 @@
         <p class="article-title text-center p-2" th:text="${article.articleTitle}"></p>
         <p class="article-inf text-center">
             <a th:href="@{'userIndex?userID='+${article.user.userID}}" th:text="${article.user.userName}"></a>
-            <span>字数</span><span class="article_word">字数</span>
+<!--            <span>字数</span><span class="article_word">字数</span>-->
             <span class="article_time" th:text="${article.launchTime}"></span>
         </p>
     </div>
@@ -60,7 +59,10 @@
     <div class="comment">
         <div class="alert-warning to-comment">
             <div>
-                <input type="text" class=" form-control" placeholder="评论">
+                <span class="result alert-info"></span>
+                <label>
+                    <input type="text" class=" form-control" placeholder="评论" autocomplete="false">
+                </label>
                 <div>
                     <span class="words">0</span><span>/50</span>
                 </div>
@@ -72,13 +74,12 @@
         </div>
 
         <div class="comment-con">
-            <div class="per-c">
-                <!--                    <div>${p.userID.userID}</div>-->
-                <!--                    <div>-->
-                <!--                        <div>${p.content}</div>-->
-                <!--                        <div>${p.createTime}</div>-->
-                <!--                    </div>-->
-
+            <div class="per-c" th:each="c:${commentList}">
+                <div th:text="${c.content}"></div>
+                <div>
+                    <div><a th:href="@{'/userIndex?userID='+${c.user.userID}}" th:text="${c.user.userName}"></a></div>
+                    <div th:text="${c.createTime}"></div>
+                </div>
 
             </div>
 

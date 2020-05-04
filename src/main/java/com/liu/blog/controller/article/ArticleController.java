@@ -1,9 +1,11 @@
 package com.liu.blog.controller.article;
 
 import com.liu.blog.entity.Article;
+import com.liu.blog.entity.Comment;
 import com.liu.blog.entity.Type;
 import com.liu.blog.entity.User;
 import com.liu.blog.service.article.ArticleService;
+import com.liu.blog.service.comment.CommentService;
 import com.liu.blog.service.type.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class ArticleController {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private CommentService commentService;
+
     public ArticleController() {
     }
 
@@ -33,8 +38,12 @@ public class ArticleController {
     public String showArticle(Model model, int articleID) {
         System.out.println("articleID:" + articleID);
         Article article = articleService.findOne(articleID);
-        model.addAttribute("article", article);
+//        评论
+        List<Comment> commentList = commentService.findAllComments(articleID);
 
+
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("article", article);
         return "article/show";
     }
 
@@ -57,7 +66,7 @@ public class ArticleController {
     public int addArticle(String articleTitle, String content, int type, HttpSession session) {
         User user = (User) session.getAttribute("user");
 
-        System.out.println(user.getUserID() + "\t" + user.getUserName());
+//        System.out.println(user.getUserID() + "\t" + user.getUserName());
 
         Type type1 = typeService.getOne(type);
 
@@ -70,7 +79,7 @@ public class ArticleController {
 //   返回ID
         int articleID = articleService.addArticle(article);
 
-        System.out.println(articleTitle + "\t" + content + "\t" + type);
+//        System.out.println(articleTitle + "\t" + content + "\t" + type);
 
         return articleID;
 
@@ -111,5 +120,28 @@ public class ArticleController {
     public String modifyArticle(int articleID) {
 
         return null;
+    }
+
+
+    //    评论
+    @GetMapping("/article/comment")
+    @ResponseBody
+    public String comment(int articleID, String content, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Article article = articleService.findOne(articleID);
+
+
+        System.out.println(articleID);
+        System.out.println(content);
+
+        Comment comment = new Comment();
+        comment.setArticle(article);
+        comment.setUser(user);
+        comment.setContent(content);
+        if (commentService.addCommnet(comment) != null) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
 }

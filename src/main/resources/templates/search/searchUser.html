@@ -1,68 +1,56 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<base href="<%=basePath%>">
-<title>searchUser</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="res/search/searchUser.css">
+    <base href="<%=basePath%>">
+    <title>searchUser</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="res/search/searchUser.css">
 
 </head>
 
 <body>
-	<div>
-		<%@include file="../headerFooter/header.jsp"%>
-	</div>
-	<div class="container">
-		<div class="search-con">
-			<div>
-				<span class="alert alert-info">相关用户</span>
-			</div>
-			<div class="user-con">
-				<!-- 用户 -->
-				<table>
-					<tbody>
-						<tr>
-							<c:forEach items="${users }" var="p" varStatus="vs">
-								<c:if test="${vs.count %3 ==0 }">
+<div th:include="/headerFooter/header :: html"></div>
+<div class="container">
+    <div class="search-con">
+        <div>
+            <span class="alert alert-info">相关用户</span>
+        </div>
+        <div class="user-con">
+            <!-- 用户 -->
+            <table>
+                <tbody>
+                <tr th:each="u:${users}">
 
-								</c:if>
-								<td class="alert alert-warning">
-									<div class="per-user">
-										<div>
-											<a href="userIndex?userID=${p.userID}">${p.userID}</a>
-										</div>
-										<div>${p.introduction}</div>
-									</div>
+                    <td class="alert alert-warning">
+                        <div class="per-user">
+                            <div>
+                                <a th:href="@{'/userIndex?userID='+${u.userID}}" th:text="${u.userName}"></a>
+                            </div>
+                            <div th:text="${u.introduction}"></div>
+                        </div>
 
-								</td>
-								<c:if test="${vs.count %3 ==0 }">
-						</tr>
-						<tr>
-							</c:if>
-							</c:forEach>
-					</tbody>
-				</table>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
 
 
+        </div>
 
-			</div>
+    </div>
 
-		</div>
+</div>
 
-	</div>
-
-		<div>
-			<%@include file="../headerFooter/footer.jsp"%>
-		</div>
+<div th:include="/headerFooter/footer :: html"></div>
 
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	
-	<script>
-		
-	</script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+
+</script>
 </body>
 
 </html>
