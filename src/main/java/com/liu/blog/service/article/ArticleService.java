@@ -2,11 +2,13 @@ package com.liu.blog.service.article;
 
 
 import com.liu.blog.entity.Article;
+import com.liu.blog.entity.Type;
 import com.liu.blog.entity.User;
 import com.liu.blog.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -37,6 +39,11 @@ public class ArticleService {
         return article.getArticleID();
     }
 
+    //    修改文章
+    @Transactional
+    public int updateArticle(String articleTitle, String content, Type type, int articleID) {
+        return articleRepository.updateArticle(articleTitle, content, type, articleID);
+    }
 
     //    删除文章
     public boolean deleteArticle(int articleID) {
@@ -44,5 +51,11 @@ public class ArticleService {
         return !articleRepository.existsById(articleID);
 
     }
+
+
+
+
+
+
 }
 

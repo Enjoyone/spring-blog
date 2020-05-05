@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -54,5 +55,31 @@ public class UserService {
         return userRepository.getOne(userID);
     }
 
+    //    修改个人信息
+    @Transactional
+    public int updateInfo(User user,int userID) {
+        return userRepository.updateInfo(user.getUserName(), user.getGender(), user.getName(), user.getIntroduction(),userID);
+    }
+
+    //修改密码
+    @Transactional
+    public int updateUserPWD(String newPWD, int userID) {
+        return userRepository.updateUserPWD(newPWD, userID);
+    }
+
+    //修改手机 微信 email
+    @Transactional
+    public int updateContent(String type, String content, int userID) {
+        switch (type) {
+            case "phone":
+                return userRepository.updatePhone(content, userID);
+            case "wechat":
+                return userRepository.updateWechat(content, userID);
+            case "email":
+                return userRepository.updateEmail(content, userID);
+            default:
+                return -1;
+        }
+    }
 
 }

@@ -21,35 +21,18 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <div>
-                    <span style="display: none;color:red;"></span>
-                </div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="文章类型名称">
-                    <div class="input-group-append">
-                        <button class="btn btn-success submit1" type="button">添加</button>
-                    </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <span class="result alert-info"></span>
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
-
-
-<!-- 内含文章 提示 -->
-<div class="cannotDelete alert-danger" style="display: none;">
-    不能删除，内含文章！
-</div>
-<div class="deleteCon alert-danger p-3" style="display: none;">
-    <div class="p-3">
-        确认删除文章类型：<span style="font-size: 20px;font-weight: bold;"></span> ?
-    </div>
-    <div class="text-right">
-        <button class="btn btn-success submit" type="button">确认</button>
-        <button class="btn btn-danger cancel" type="button">关闭</button>
-    </div>
-</div>
-
 
 <!-- 修改类型名称 -->
 <div class="modal fade" id="changeTypeName">
@@ -57,21 +40,51 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">修改类型名称</h4>
+                <h3 class="ml-3 old-type"></h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control newTypeName" placeholder="新名称">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" class="old-typeID">
+                <span class="result alert-info"></span>
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除-->
+<div class="modal fade" id="deleteType">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">删除类型</h4>
                 <h3 class="ml-3 badge-info"></h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <div>
-                    <span style="display: none;color:red;"></span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="新名称">
-                    <div class="input-group-append">
-                        <button class="btn btn-success submit" type="button">修改</button>
+                <div class="deleteCon alert-danger p-3">
+                    <div class="p-3">
+                        确认删除文章类型：<span style="font-size: 20px;font-weight: bold;"></span> ?
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center" style="display: none"></div>
+
+            <div class="modal-footer">
+                <input type="hidden" class="old-typeID">
+                <input type="hidden" class="typeNum">
+                <span class="cannotDelete alert-danger" style="display: none;">
+                    不能删除，内含文章！
+                </span>
+                <span class="result alert-info"></span>
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
         </div>
     </div>
 </div>
@@ -103,20 +116,7 @@
         <div class="tab-content">
             <div id="article" class="tab-pane active">
                 <div class="article-show">
-                    <!-- 删除提示框。。 -->
-                    <div class="alert alert-warning" id="delete-article-warning" style="display: none;">
-                        <button type="button" class="btn close-this">&times;</button>
-                        <div>
-                            <span>确认删除&nbsp;文章：</span><span class="title-con"></span> <span>吗？</span>
-                        </div>
-                        <div>
-                            <span class="deleteID" style="display: none;"></span>
-                            <button type="button" class="btn btn-warning delete-button">确认</button>
-                        </div>
-                    </div>
-                    <div id="operateResult" class="alert alert-info">
 
-                    </div>
                     <!-- 申诉 -->
                     <div id="appeal" class="alert alert-info">
                         <div>
@@ -176,44 +176,20 @@
                             <td th:text="${iterStat.count}"></td>
                             <td class="title-pre"><a
                                     th:href="@{'/showArticle?articleID='+${p.articleID}}"
-                                    class="articleTitle" th:text="${p.articleTitle }"></a> <span
-                                    style="display: none" th:text="${p.articleID}"></span></td>
+                                    class="articleTitle" th:text="${p.articleTitle }"></a>
+                                <span
+                                        style="display: none" th:text="${p.articleID}" class="hide-id"></span></td>
                             <td th:text="${p.type.typeName}"></td>
                             <td th:text="${p.launchTime}"></td>
-                            <!--                            <td>${p.supportNum }</td>-->
-                            <!--                            <td>${p.commentNum }</td>-->
                             <td>
-
-                                <!--                                <span class="badge badge-primary">公开</span>-->
-                                <!--                                <c:if test="${p.articleComment eq true}">-->
-                                <!--                                    <span class="badge badge-success">可评论</span>-->
-                                <!--                                </c:if>-->
-                                <!--                                <c:if test="${p.articleComment eq false}">-->
-                                <!--                                    <span class="badge badge-light">不可评论</span>-->
-                                <!--                                </c:if>-->
-
 
                             </td>
                             <td>
-                                <!--                                <c:choose>-->
-
-                                <!--                                    <c:when test="${p.articleBlock eq true}">-->
-                                <!--                                        <span class="badge badge-danger">屏蔽</span>-->
-                                <!--                                        <a href="javascript:void(0)" class="to-appeal">申诉</a>-->
-                                <!--                                    </c:when>-->
-                                <!--                                    <c:otherwise>-->
-                                <!--                                        <c:if test="${p.articleDraft eq true}">-->
-                                <!--                                            <span class="badge badge-warning">存稿</span>-->
-                                <!--                                        </c:if>-->
-                                <!--                                        <c:if test="${p.articleDraft eq false}">-->
-                                <!--                                            ${p.articleBlock eq true ? "屏蔽":"正常"}-->
-                                <!--                                        </c:if>-->
-                                <!--                                    </c:otherwise>-->
-                                <!--                                </c:choose>-->
 
                             </td>
-                            <td><a th:href="@{'modifyArticle?articleID='+${p.articleID}}">修改</a><a
-                                    href="javascript:void(0)" class="delete-article pl-3">删除</a></td>
+                            <td><a th:href="@{'/modifyArticle?articleID='+${p.articleID}}">修改</a><a
+                                    href="javascript:void(0)" class="delete-article pl-3" data-toggle="modal"
+                                    data-target="#deleteArticle">删除</a></td>
 
                         </tr>
 
@@ -275,24 +251,15 @@
                                                 href="javascript:void(0)" class="info-type" th:text="${t.typeName}"></a>
                                             <span style="display: none;" th:text="${t.typeID}"></span></td>
                                         <td class="articleNum">
-                                            <!--                                                <c:choose>-->
-                                            <!--                                                    <c:when test="${q.articleNum > 0}">-->
-                                            <!--                                                        <a href="javascript:void(0)" class="info-type"><span>${q.articleNum}</span>-->
 
-                                            <!--                                                            <span class="badge badge-pill badge-info typeInfo">查看</span>-->
-                                            <!--                                                        </a>-->
-                                            <!--                                                    </c:when>-->
-
-                                            <!--                                                    <c:otherwise>-->
-                                            <!--                                                        0-->
-                                            <!--                                                    </c:otherwise>-->
-                                            <!--                                                </c:choose>-->
                                         </td>
                                         <td>
                                             <button class="btn btn-info chengeTypeNameBtn"
                                                     data-toggle="modal" data-target="#changeTypeName">修改
                                             </button>
-                                            <button class="btn btn-warning delete-articleType">删除</button>
+                                            <button class="btn btn-warning delete-articleType" data-toggle="modal"
+                                                    data-target="#deleteType">删除
+                                            </button>
                                         </td>
 
                                     </tr>
@@ -334,6 +301,34 @@
 
 <div class="userCenterBottom">
     <div th:include="/headerFooter/footer :: html"></div>
+</div>
+
+
+<!--删除-->
+<div class="modal fade aa" id="deleteArticle">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改文章</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <span>确认删除&nbsp;文章：</span><span class="title-con"></span> <span>吗？</span>
+                    <p class="idid"></p>
+                </div>
+                <input type="hidden" class="articleID">
+            </div>
+
+            <div class="modal-footer">
+                <span class="result alert-info"></span>
+                <button type="button" class="btn btn-success submit">确认</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 

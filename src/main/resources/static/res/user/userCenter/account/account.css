@@ -9,4 +9,19 @@
 	padding: 3px;
 }
 
-
+.type{
+	display: none;
+}
+.result{
+	display: none;
+	font-size: 30px;
+	border-radius: 20%;
+	padding:5px;
+	position: absolute;
+	right: 50%;
+}
+.pwd-warn{
+	font-size: 20px;
+	font-weight: bold;
+	display: none;
+}

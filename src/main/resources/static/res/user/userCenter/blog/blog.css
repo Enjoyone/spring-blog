@@ -38,10 +38,6 @@
 
 
 
-
-
-
-
 #operateResult{
 	display: none;
     position: absolute;
@@ -111,21 +107,22 @@
 }
 
 
-/* 删除提示 */
-.cannotDelete{
-	position: absolute;
-}
-.deleteCon{
-	position: absolute;
-	min-width: 300px;
-	min-height:100px;
-}
-.deleteCon div:nth-child(2){
-	display: inline-flex;
-	float:right;
+
+.title-con{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px;
 }
 
 
+.result{
+    display: none;
+    font-size: 30px;
+    border-radius: 20%;
+    padding:5px;
+    position: absolute;
+    right: 50%;
+}
 /* 文章类型展示 */
 
 
@@ -171,6 +168,12 @@
 }
 
 
+/*修改类型*/
+#changeTypeName h3{
+    font-size: 40px;
+    padding: 5px;
+    font-weight: bold;
+}
 
 
 

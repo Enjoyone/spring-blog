@@ -55,8 +55,10 @@
                         <div class="article-per-con">
                             <a th:href="'showArticle?articleID='+${article.articleID}"
                                th:text="${article.articleTitle}">
-                                <span class="badge badge-primary" th:text="${article.type.typeName}"></span>
+
                             </a>
+                            <span class="badge badge-primary" th:text="${article.type.typeName}"></span>
+
                             <div class="articleCon" th:with="content=${article.content}">
                                 <!--							需要完善-->
                                 <span th:if="${#strings.length(content)>100}"
@@ -90,18 +92,19 @@
         </div>
         <hr>
         <div>
-            <div class="list-group left-typeName">
+            <div class="list-group right-typeName">
                 <a href="userIndex?userID=${user.userID}"
                    class="list-group-item list-group-item-action">文章类型</a>
 
                 <label class="list-group-item list-group-item-action">
                     <a
-                            href="javascript:void(0)" th:each="type:${types}"> <input type="radio"
-                                                                                      name="typeName"
-                                                                                      th:value="${type.typeID}"
-                                                                                      style="display: none;"> <span
-                            th:text="${type.typeName}"><span
-                            class="badge badge-info includeNum"></span> </span>
+                            href="javascript:void(0)" th:each="type,count:${types}">
+                        <input type="radio" name="typeName" th:value="${type.typeID}"
+                               style="display: none;">
+                        <span class="num" th:text="${count.count}"></span>
+                        <span th:text="${type.typeName}">
+                            <span class="badge badge-info includeNum"></span>
+                        </span>
                     </a>
                 </label>
 

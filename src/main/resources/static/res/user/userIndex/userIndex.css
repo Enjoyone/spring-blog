@@ -121,21 +121,26 @@
 
 
 /* 左侧用户的文章类型 */
-.left-typeName {
+.right-typeName {
     position: relative;
 }
 
-.left-typeName label {
-    text-align: center;
-    display: flex;
-    width: 100%;
-    cursor: pointer;
+.right-typeName label {
+    /*text-align: center;*/
+    /*display: flex;*/
+    /*width: 100%;*/
+    /*cursor: pointer;*/
 }
 
-.left-typeName label a {
+.right-typeName a {
     text-decoration: none;
+    display: flex;
 }
-
+.right-typeName .num {
+    color: black;
+    font-size: 20px;
+    margin-right: 5px;
+}
 
 
 

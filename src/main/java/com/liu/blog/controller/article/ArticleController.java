@@ -85,10 +85,47 @@ public class ArticleController {
 
     }
 
+    //    文章修改
+    @GetMapping("/modifyArticle")
+    public String modifyArticle(int articleID, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+//        返回文章类型
+        List<Type> types = typeService.showTypesByUserID(user.getUserID());
+
+        Article article = articleService.findOne(articleID);
+        model.addAttribute("types", types);
+        model.addAttribute("article", article);
+
+        model.addAttribute("type", "change");
+        return "article/write";
+    }
+
+
+    @PostMapping("/modifyArticle")
+    @ResponseBody
+    public int addArticle(String articleTitle, String content, int type, int articleID) {
+
+        Type type1 = typeService.getOne(type);
+
+        if (articleService.updateArticle(articleTitle, content, type1, articleID) > 0) {
+            return articleID;
+        } else {
+            return -1;
+        }
+
+    }
+
 
     //    删除文章
-    public boolean deleteArticle(int articleID) {
-        return articleService.deleteArticle(articleID);
+    @GetMapping("/deleteArticle")
+    @ResponseBody
+    public String deleteArticle(int articleID) {
+        if (articleService.deleteArticle(articleID)) {
+            return "1";
+
+        } else {
+            return "-1";
+        }
     }
 
 
@@ -106,20 +143,37 @@ public class ArticleController {
         return "1";
     }
 
+    //    修改类型
+    @GetMapping("/updateType")
+    @ResponseBody
+    public String updateType(int typeID, String newTypeName) {
+        if (typeService.updateType(typeID, newTypeName) > 0) {
+            return "1";
+        } else {
+            return "-1";
+        }
+    }
+
+
+    //    删除类型
+    @GetMapping("/deleteType")
+    @ResponseBody
+    public String deleteType(int typeID) {
+        switch (typeService.deleteType(typeID)) {
+            case 1:
+                return "1";
+            case -1:
+                return "-1";
+            default:
+                return "0";
+        }
+    }
+
     @GetMapping("/showType")
     @ResponseBody
     public String showType() {
         List<Type> types = typeService.showAllTypes();
         return "showType";
-    }
-
-
-    //    文章修改
-    @GetMapping("/modifyArticle")
-    @ResponseBody
-    public String modifyArticle(int articleID) {
-
-        return null;
     }
 
 

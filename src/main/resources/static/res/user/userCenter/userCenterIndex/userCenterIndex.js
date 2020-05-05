@@ -1,6 +1,5 @@
 $(function () {
 
-
     $(".submit-btn").click(function () {
 
         var userName = $('[name="userName"]').val();
@@ -13,19 +12,9 @@ $(function () {
         // var birth = yearNum + '-' + monthNum + '-' + dayNum;
         var introduction = $('[name="introduction"]').val();
 
-        // var operateType = "changeInfo";
-        // var info = {
-        // 	"userID" : userID,
-        // 	"userName" : username,
-        // 	"userGender" : userGender,
-        // 	"birth" : birth,
-        // 	"introduction" : introduction
-        // };
-        // var jsonData = JSON.stringify(info);
-
         $.ajax({
             type: "post",
-            url: "changeInfo",
+            url: "/changeInfo",
             data: {
                 name: name,
                 gender: gender,
@@ -40,15 +29,17 @@ $(function () {
                 } else {
                     result = "修改失败！"
                 }
-                $(".change-status-con").html(result);
-                $(".change-status").show();
+
+                $(".result").html("");
+                $(".result").html(result);
+                $(".result").show();
 
 
-                var sec = 1;
+                var sec = 3;
                 setInterval(function () {
                     sec--;
                     if (sec < 0) {
-                        window.location.reload();
+                        window.location.href = "/login";
                     }
                 }, 500);
             }

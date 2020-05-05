@@ -18,11 +18,16 @@
     <form class="form-group write-form" action="write" method="post">
         <div class="input-group">
 
-            <label for="articleTitle">文章标题： <input type="text"
-                                                    name="articleTitle" id="articleTitle" placeholder="请输入标题"
-                                                    value=""
-                                                    autocomplete="off"> <span style="font-size: 15px;">字数：<span
-                    class="title-words">0</span>/<span class="title-max-words">25</span></span>
+            <label>文章标题： <input type="text"
+                                name="articleTitle" placeholder="请输入标题"
+                                value=""
+                                autocomplete="off" th:if="${type!=null}" th:value="${article.articleTitle}">
+                <input type="text"
+                       name="articleTitle" placeholder="请输入标题"
+                       value=""
+                       autocomplete="off" th:if="${type==null}">
+                <span style="font-size: 15px;">字数：<span
+                        class="title-words">0</span>/<span class="title-max-words">25</span></span>
             </label>
 
         </div>
@@ -32,17 +37,6 @@
                                           class="form-control mr-3">
                 <option th:each="type : ${types}" th:value="${type.typeID}" th:text="${type.typeName}">
                 </option>
-
-
-                <!--                								<c:when-->
-                <!--                									test="${p.articleTypeID eq article.articleType.articleTypeID }">-->
-                <!--                									<option value="${article.articleType.articleTypeID}"-->
-                <!--                										selected="selected">${article.articleType.articleTypeName}</option>-->
-                <!--                								</c:when>-->
-                <!--                								<c:otherwise>-->
-                <!--                									<option value="${p.articleTypeID}">${p.articleTypeName}</option>-->
-                <!--                								</c:otherwise>-->
-
 
                 <option value="-1" disabled>————</option>
                 <option value="0" class="new-article-type">新建类型</option>
@@ -68,7 +62,7 @@
                 <!--					<c:if test="${isExited eq '1'}">${article.articleContent}</c:if>-->
             </div>
             <textarea id="content"
-                     name="content" style="width:100%; height:200px;display: none;"></textarea>
+                      name="content" style="width:100%; height:200px;display: none;"></textarea>
             <div class="text-right">
 					<span class="badge badge-pill badge-danger over-words"
                           style="display: none">!</span> <span>字数：</span> <span
@@ -96,19 +90,9 @@
         <div class="article_final">
             <div class="btn-group ">
 
-<!--					<span class="isExited" style="display: none;>-->
-<!--						${isExited}-->
-<!--					</span>-->
-<!--					&lt;!&ndash;  &ndash;&gt;-->
-<!--					<span style=" display: none;>-->
-<!--						<c:if test="${isExited eq '1'}">-->
-<!--						<span class="articleID">${article.articleID}</span>-->
-<!--						</c:if>-->
-<!--						<c:if test="${isExited eq '0'}"><span class="articleID">0</span></c:if>-->
-<!--					</span>-->
-
-                <button type="button" class="btn btn-primary submit-button">立即提交</button>
-<!--                <button type="button" class="btn btn-outline-info draft-button">存稿</button>-->
+                <button type="button" class="btn btn-primary submit-button" th:if="${type==null}">立即提交</button>
+                <button type="button" class="btn btn-primary save" th:if="${type!=null}">保存</button>
+                <!--                <button type="button" class="btn btn-outline-info draft-button">存稿</button>-->
 
             </div>
         </div>
@@ -118,9 +102,13 @@
 
 <div th:include="/headerFooter/footer :: html"></div>
 
+<input type="hidden" th:if="${article!=null}" th:value="${article.content}" class="changeCon">
+<input type="hidden" th:if="${article!=null}" th:value="${article.articleID}" class="articleID">
+
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="res/article/articleWrite.js"></script>
+<script src="res/article/updateArticle.js"></script>
 <script src="res/editor/wangEditor.min.js"></script>
 <script src="res/article/editor.js"></script>
 

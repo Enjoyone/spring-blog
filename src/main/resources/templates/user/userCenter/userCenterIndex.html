@@ -36,10 +36,9 @@
         <div class="tab-content">
             <div id="personalData" class="tab-pane active">
 
-                <div class="change-status alert-danger text-center p-3">
-                    <span class="change-status-con p-2 text-success font-weight-bold"></span><br>
-                    <!--                    <span>马上刷新！</span>-->
-                </div>
+<!--                <div class="change-status alert-danger text-center p-3">-->
+<!--                    <span class="change-status-con p-2 text-success font-weight-bold"></span><br>-->
+<!--                </div>-->
 
                 <div class="user-information">
 
@@ -108,17 +107,11 @@
                 <h4 class="modal-title">修改信息</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <!-- 模态框主体 -->
             <div class="modal-body">
-
-
-                <div class="change_user_information-con alert-danger"
-                     style="display: none">
+                <div class="change_user_information-con alert-danger">
                     <div class="">
                         <label>登录名： <input type="text" name="userName"
-                                           class=" form-control" readonly="readonly"
-                                           th:value="${user.userName}">
+                                           class=" form-control" th:value="${user.userName}">
                         </label> <label>姓名： <input type="text" name="name"
                                                    class=" form-control" th:value="${user.name}">
                     </label> <label>性别：
@@ -140,6 +133,7 @@
 
             </div>
             <div class="modal-footer">
+                <span class="result"></span>
                 <button type="button"
                         class="btn btn-success m-1 pr-3 pl-3 submit-btn">确认
                 </button>

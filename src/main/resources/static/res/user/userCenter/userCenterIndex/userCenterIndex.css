@@ -96,7 +96,14 @@
     height: 100px;
 }
 
-
+.result{
+    display: none;
+    font-size: 30px;
+    border-radius: 20%;
+    padding:5px;
+    position: absolute;
+    right: 50%;
+}
 
 
 
