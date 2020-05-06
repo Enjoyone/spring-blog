@@ -33,9 +33,7 @@
     <div class="id-login">
         <div class="login-form">
             <form th:action="@{/login}" method="POST" class="login-form-con" autocomplete="off">
-                <!-- 表单类型 -->
-                <!--                <label for="lrType"></label>-->
-                <!--                <input type="hidden" id="lrType" name="operateType" value="login">-->
+
                 <span class="error-inf" th:if="${error!=null}" th:text="${error}"></span>
                 <div class="input-group mb-3">
                     <!-- mb-3 间隙 -->

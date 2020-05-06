@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,12 +58,14 @@ public class UserController {
 
     //登录
     @GetMapping("/login")
+//    @CrossOrigin
     public String login() {
         return "loginRegister/login";
     }
 
-    @PostMapping("/login")
 
+    @PostMapping("/login")
+//    @CrossOrigin
     public String loginCheck(Model model, String userName, String userPWD, HttpSession session) {
         System.out.println("userName:\t" + userName + "userPWD:\t" + userPWD);
         User user = userService.checkUser(userName, userPWD);

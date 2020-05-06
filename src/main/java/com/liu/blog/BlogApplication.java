@@ -8,10 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 //过滤器
-
-//@ServletComponentScan(basePackages = {"com.liu.blog.controller.filter"})
-
-
+@ServletComponentScan(basePackages = {"com.liu.blog.controller"})
 
 public class BlogApplication {
 
