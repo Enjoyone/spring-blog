@@ -25,6 +25,11 @@ public interface TypeRepository extends JpaRepository<Type, Integer> {
     @Modifying
     int updateType(String typeName,int typeID);
 
+    @Query("update Type set status=?1 where typeID=?2")
+    @Modifying
+    int blockType(boolean status,int typeID);
+
+
 
     @Query("select a from Article a where a.type.typeID=?1")
     List<Article> backByTypeID(int typeID);

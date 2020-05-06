@@ -169,6 +169,19 @@ public class ArticleController {
         }
     }
 
+    //    禁用类型
+    @GetMapping("/changeTypeStatus")
+    @ResponseBody
+    public String blockType(int typeID) {
+        if (typeService.blockType(typeID) > 0) {
+            return "1";
+        } else {
+            return "-1";
+        }
+
+    }
+
+
     @GetMapping("/showType")
     @ResponseBody
     public String showType() {

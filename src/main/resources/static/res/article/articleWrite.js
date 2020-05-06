@@ -1,5 +1,17 @@
 // article_oprate
 $(function () {
+    //类型初始化
+    $("[name='type'] option").each(function () {
+        if ($(this).prop("disabled")){
+            $(this).css("background-color","lightgray");
+        }
+
+    });
+
+
+
+
+
     // title 字数
     $("#article_title").bind("keyup", function () {
         $(this).val($(this).val().substring(0, $(".title-max-words").text()));

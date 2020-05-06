@@ -5317,3 +5317,6 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 81 more
+2020-05-06 16:25:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ADMININFO ( ADMINID INT PRIMARY KEY IDENTITY[*](1,1) NOT NULL, ADMINUSERNAME NVARCHAR(50) NOT NULL, ADMINPWD NVARCHAR(128) NOT NULL, NAME NVARCHAR(50) NOT NULL, GENDER CHAR(4) NOT NULL, PHONE CHAR(11) NOT NULL, TYPE BIT DEFAULT 0 NOT NULL, REGISTERTIME DATETIME DEFAULT GETDATE() NOT NULL, STATUS BIT DEFAULT 1 NULL )"; expected "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+create table adminInfo ( adminID int primary key identity(1,1) not null, adminUserName NVARCHAR(50) not null, adminPWD nvarchar(128) not null, name nvarchar(50) not null, gender char(4) not null, phone char(11) not null, type bit default 0 not null, registerTime datetime default getDate() not null, status bit default 1 null ) [42001-200]

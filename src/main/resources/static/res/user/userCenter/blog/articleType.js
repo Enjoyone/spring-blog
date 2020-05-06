@@ -153,6 +153,33 @@ $(function () {
         });
     });
 
+
+    // changeTypeStatus
+    $(".changeTypeStatus").click(function () {
+        var typeID = $(this).parent().siblings(".articleTypeName").find("span").text();
+        $.ajax({
+            type: "get",
+            url: "changeTypeStatus",
+            data: {
+                typeID: typeID
+            },
+            datatype: "json",
+            success: function (data) {
+                var sec = 1;
+                setInterval(function () {
+                    sec--;
+                    if (sec < 0) {
+                        window.location.reload();
+                    }
+                }, 500);
+            }
+        });
+    });
+
+
+//    禁用类型
+
+
 // typeInfo
     $(".typeInfo").click(function () {
         var userID = $(".userID").text();

@@ -35,7 +35,7 @@
         <div class="form-inline">
             <label class="">文章类型： <select name="type"
                                           class="form-control mr-3">
-                <option th:each="type : ${types}" th:value="${type.typeID}" th:text="${type.typeName}">
+                <option th:each="type : ${types}" th:value="${type.typeID}" th:text="${type.typeName}" th:disabled="${!type.status}">
                 </option>
 
                 <option value="-1" disabled>————</option>

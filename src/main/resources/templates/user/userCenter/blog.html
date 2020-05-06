@@ -239,7 +239,7 @@
                                     <tr>
                                         <th></th>
                                         <th>文章类型</th>
-                                        <th>文章数</th>
+                                        <th>状态</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -250,14 +250,16 @@
                                         <td class="articleTypeName"><a
                                                 href="javascript:void(0)" class="info-type" th:text="${t.typeName}"></a>
                                             <span style="display: none;" th:text="${t.typeID}"></span></td>
-                                        <td class="articleNum">
+                                        <td class="articleNum" th:text="${t.status==true?'正常':'禁用'}">
 
                                         </td>
                                         <td>
                                             <button class="btn btn-info chengeTypeNameBtn"
                                                     data-toggle="modal" data-target="#changeTypeName">修改
                                             </button>
-                                            <button class="btn btn-warning delete-articleType" data-toggle="modal"
+                                            <button class="btn btn-warning  changeTypeStatus" th:text="${t.status==true?'禁用':'启用'}">
+                                            </button>
+                                            <button class="btn   btn-danger delete-articleType" data-toggle="modal"
                                                     data-target="#deleteType">删除
                                             </button>
                                         </td>

@@ -59,10 +59,14 @@ public class TypeService {
 
 
     //	禁用
-    public boolean blockStatus(int typeID) {
+    @Transactional
+    public int blockType(int typeID) {
+        boolean status = false;
+
         Type type = typeRepository.getOne(typeID);
-        type.setStatus(false);
-        return true;
+        status = !type.isStatus();
+
+        return typeRepository.blockType(status, typeID);
     }
 
 
