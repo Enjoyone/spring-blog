@@ -11,7 +11,7 @@
     <div>
         <nav class="navbar navbar-dark">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="admin"><img
+                <li class="nav-item"><a class="nav-link" href="/admin"><img
                         src="/res/admin/image/admin-left/1.png" alt="综合" class="image-left">
                     <span>综合</span></a></li>
                 <li class="nav-item"><a class="nav-link"
@@ -21,8 +21,8 @@
                     <div class="change-direction1">&gt;</div>
                 </a>
                     <div class="next-menu">
-                        <a th:href="@{'admin/adminWeb?web=manageUser'}"><span>管理类用户</span></a>
-                        <a th:href="@{'admin/adminWeb?web=normalUser'}"><span>普通类用户</span></a>
+                        <a th:href="@{'/admin/adminWeb?web=manageUser'}"><span>管理类用户</span></a>
+                        <a th:href="@{'/admin/adminWeb?web=normalUser'}"><span>普通类用户</span></a>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link "
@@ -32,8 +32,8 @@
                     <div class="change-direction1">&gt;</div>
                 </a>
                     <div class="next-menu">
-                        <a th:href="@{'admin/adminWeb?web=article'}"><span>文章</span></a>
-                        <a th:href="@{'admin/adminWeb?web=type'}"><span>文章类型</span></a>
+                        <a th:href="@{'/admin/adminWeb?web=article'}"><span>文章</span></a>
+                        <a th:href="@{'/admin/adminWeb?web=type'}"><span>文章类型</span></a>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link " href="javascript:void(0)"><img

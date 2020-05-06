@@ -4,11 +4,13 @@ package com.liu.blog.controller.admin;
 import com.liu.blog.entity.Admin;
 import com.liu.blog.entity.Article;
 import com.liu.blog.service.admin.AdminService;
+import com.liu.blog.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/admin")
     public String admin(Model model) {
@@ -79,13 +84,24 @@ public class AdminController {
     }
 
 
-
-
     //    退出
     @GetMapping("/adminLogout")
     public String adminLogout(HttpSession session) {
         session.invalidate();
         return "redirect:adminLogin";
+    }
+
+
+    //    修改用户状态
+    @GetMapping("/updateUserStatus")
+    @ResponseBody
+    public String updateUserStatus(int userID, boolean status) {
+        if (userService.updateUserStatus(userID, status) > 0) {
+            return "1";
+        } else {
+            return "-1";
+        }
+
     }
 
 }

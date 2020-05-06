@@ -41,4 +41,17 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     int updateInfo(String userName, String gender, String name, String introduction, int userID);
 
+
+
+//    修改用户状态
+    @Query("update User  set status=?1 where userID=?2")
+    @Modifying
+    int updateUserStatus(boolean status,int userID);
+
+
+
+
+
+
+
 }

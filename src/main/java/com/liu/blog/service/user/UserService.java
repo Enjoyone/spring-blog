@@ -57,8 +57,8 @@ public class UserService {
 
     //    修改个人信息
     @Transactional
-    public int updateInfo(User user,int userID) {
-        return userRepository.updateInfo(user.getUserName(), user.getGender(), user.getName(), user.getIntroduction(),userID);
+    public int updateInfo(User user, int userID) {
+        return userRepository.updateInfo(user.getUserName(), user.getGender(), user.getName(), user.getIntroduction(), userID);
     }
 
     //修改密码
@@ -80,6 +80,13 @@ public class UserService {
             default:
                 return -1;
         }
+    }
+
+    //    修改用户状态
+    @Transactional
+    public int updateUserStatus(int userID, boolean status) {
+        return userRepository.updateUserStatus(status, userID);
+
     }
 
 }
